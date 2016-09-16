@@ -55,3 +55,14 @@ body {
   height: 500px;
   width: 100%;
 }
+
+/*CUSTOM CSS - mylists.html*/
+
+.collabForm {
+  position: absolute;
+  margin-top: 10px;
+  margin-left: 5px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
