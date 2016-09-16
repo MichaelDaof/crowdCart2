@@ -26,6 +26,8 @@ angular.module('crowdcart.auth', [])// make an auth module
         $window.localStorage.setItem('crowdcarttoken', data.token);
         // saving username to localstorage
         $window.localStorage.setItem('crowdcartuser', data.userid);
+
+        // perform second request to Stripe for user/source tokeninzation
         $location.path('/mylists');
       })
       .catch(function (error) {
