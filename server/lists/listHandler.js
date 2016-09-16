@@ -42,6 +42,7 @@ module.exports = {
             console.error(err);
           }
           list.deliverer_id = req.body.deliverer_id;
+          list.collab_email = req.body.collab_email;
           list.save();
           res.json(list);
         }

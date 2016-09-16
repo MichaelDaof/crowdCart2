@@ -109,6 +109,18 @@ angular.module("crowdcart.lists", ["angularMoment"])
   }
 
 
+  //Add a collaborator to the list
+  $scope.addCollabToList = function(list) {
+    list.showCollabForm = null;
+    Lists.updateList(list)
+      .then(function() {
+        console.log('list updated with collaborator')
+      })
+      .catch(function (error) {
+        console.log(error)
+      });
+  }
+
   //Google Map initializer
   $scope.mapInitialize = function() {
 

@@ -22,8 +22,8 @@
             <span ng-if="list.collab_email">{{list.collab_email}}</span>
             <a ng-click="list.showCollabForm = list._id" ng-if="!list.collab_email" class="btn btn-primary btn-sm active">Add Collaborator</a>
             <div ng-show="list.showCollabForm === list._id" class="collabForm">
-              <input ng-model="collabForm" placeholder="Enter email address"/>
-              <a ng-click="addCollabToList(collabForm)" class="btn btn-primary btn-sm active">Add</a>
+              <input ng-model="list.collab_email" placeholder="Enter email address"/>
+              <a ng-click="addCollabToList(list); list.showCollabForm = false" class="btn btn-primary btn-sm active">Add</a>
             </div>
           </td>
           <td><a ng-click="deleteList(this.list._id, $index)" class="btn btn-primary btn-sm active">Delete List</a></td>
