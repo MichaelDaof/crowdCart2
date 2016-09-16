@@ -1,4 +1,4 @@
-angular.module('crowdCard.admin', [])
+angular.module('crowdCart.admin', [])
 
 .controller('adminController', function ($scope, $window, $location) {
 
