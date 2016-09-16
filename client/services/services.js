@@ -36,7 +36,6 @@ angular.module("crowdcart.services",[])
 
   // signup
   var signup = function(user) {
-    console.log(user);
     return $http({
       method: "POST",
       url: "/api/signup",
@@ -202,4 +201,24 @@ angular.module("crowdcart.services",[])
     deleteJob: deleteJob
   };
 
-});
+})
+
+.factory("CCAuth", function ($http, $window){
+  var stripeResponseHandler = function (status, response){
+    if (response.error){
+      console.log("Failed to create user/source token: ", response.error)
+    } else {
+      var token = response.id;
+      console.log("Successfully created source token: ", token) //works!
+      // now send back to server for server-side customer creation
+    }
+  };
+
+  var getToken = function (cc, userid){
+    $window.Stripe.card.createToken(cc, stripeResponseHandler)
+  }
+
+  return {
+    getToken: getToken
+  }
+})

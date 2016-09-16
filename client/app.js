@@ -65,6 +65,7 @@ angular.module("crowdcart", [
     });
 
     $httpProvider.interceptors.push('AttachTokens');
+
 })
 
 // main app controller, not inside a ng-view, hanldes signout
@@ -94,7 +95,7 @@ angular.module("crowdcart", [
 })
 
 // run directive
-.run(function($rootScope, $location, Auth){
+.run(function($rootScope, $location, $window, Auth){
   $rootScope.$on('$routeChangeStart', function(event, next, current){
     // console.log("NEXT: ", next);
     if (next.$$route && next.$$route.authenticate && !Auth.isAuthenticated()) {
@@ -102,4 +103,8 @@ angular.module("crowdcart", [
     }
     $rootScope.hasSession = Auth.isAuthenticated();
   });
+
+  // authenticate with Stripe
+  Stripe.setPublishableKey('pk_test_R02Apjsv5QBhyFk929nSx9Lr')
+
 });

@@ -1,6 +1,6 @@
 angular.module('crowdcart.auth', [])// make an auth module
 
-.controller('AuthController', function ($scope, $window, $location, Auth) {
+.controller('AuthController', function ($scope, $window, $location, Auth, CCAuth) {
 
   $scope.signin = function () {
     Auth.signin($scope.user)
@@ -21,7 +21,9 @@ angular.module('crowdcart.auth', [])// make an auth module
   };
 
   $scope.signup = function () {
-    console.log("sign up test: ", $window.Stripe, $scope.stripe)
+    // getToken is outside asyn call for testing purposes
+    // should live in Auth.signup callback to be executed AFTER user creation
+    CCAuth.getToken($scope.stripe)
     Auth.signup($scope.user)
       .then(function (data) {
         $window.localStorage.setItem('crowdcarttoken', data.token);
@@ -29,6 +31,7 @@ angular.module('crowdcart.auth', [])// make an auth module
         $window.localStorage.setItem('crowdcartuser', data.userid);
 
         // perform second request to Stripe for user/source tokeninzation
+
         $location.path('/mylists');
       })
       .catch(function (error) {
@@ -36,7 +39,3 @@ angular.module('crowdcart.auth', [])// make an auth module
       });
   };
 });
-
-
-
-
