@@ -113,8 +113,8 @@ angular.module("crowdcart.lists", ["angularMoment"])
   $scope.addCollabToList = function(list) {
     list.showCollabForm = null;
     Lists.updateList(list)
-      .then(function() {
-        console.log('list updated with collaborator')
+      .then(function(res) {
+        console.log('list updated with collaborator', res)
       })
       .catch(function (error) {
         console.log(error)

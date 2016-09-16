@@ -2,6 +2,26 @@
 var helper = require('../config/helpers.js');
 var User = require('../users/userModel.js');
 var List = require('./listModel.js');
+var ObjectId = require('mongodb').ObjectId;
+var mongoose = require('mongoose');
+
+  // copies list into collaborator's account
+  var _copyCollabList = function(list, secondUser) {
+    console.log('list to copy', list)
+    var obj_id = new ObjectId(list.creator_id);
+    User.find({"_id": obj_id}, function(err, firstUser){
+      if (err) {};
+      list.collab_email = firstUser[0].email;
+      list.creator_id = secondUser[0]._id;
+      console.log('email', firstUser[0].email, secondUser[0])
+      List.create(list, function(err, res){
+        if (err) {}
+        console.log('new list created', res)
+      })
+    })
+  }
+
+
 
 // export function
 module.exports = {
@@ -43,8 +63,29 @@ module.exports = {
           }
           list.deliverer_id = req.body.deliverer_id;
           list.collab_email = req.body.collab_email;
-          list.save();
-          res.json(list);
+          if (list.collab_email) {
+            User.find({"email": list.collab_email}, function(err, user){
+              if (user.length === 0) {
+                res.json('user does not exist')
+              } else {
+                // if collab email exists in system then save this list as valid and return user info
+                // list.save();
+                var cb = function() {
+                  var listCopy = list;
+                  listCopy._id = ObjectId();
+                  listCopy.isNew = true;
+                  listCopy.save()
+                  _copyCollabList(listCopy, user);
+                }
+
+                list.save(cb)
+                res.json(list)
+              }
+            })
+          } else {
+            list.save();
+            res.json(list);
+          }
         }
     );
 
