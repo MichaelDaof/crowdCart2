@@ -6,10 +6,12 @@ angular.module("crowdcart.services",[])
 
 .factory("Admin", function($http) {
 
+  var admin = function(user) {
+
+  };
 
 
-});
-
+})
 
 
 
