@@ -1,12 +1,13 @@
 # Project Name
 
->CrowdCart
+>CrowdCart2
 
 ## Team
 
-  - __Product Owner__: Ali Bhatti
-  - __Scrum Master__: Henry Yang
-  - __Development Team Members__: Daniel Chang, Kyle Van Vleck
+  - __Product Owner__: Michael Daof
+  - __Scrum Master__: Jason Holtkamp
+  - __Development Team Members__: Patrik Korzinski, Jim Yang
+  - __Original Codebase By__: Team Dancing-Penguin (Ali Bhatti, Daniel Chang, Daniel Van Vleck, Henry Yang)
 
 ## Table of Contents
 
@@ -59,7 +60,7 @@ npm install
 
 ### Tasks
 
-View the waffle.io issue [here](https://waffle.io/Dancing-Penguin/Dancing-Penguin)
+View the waffle.io issue [here](https://waffle.io/hrr18-doge/crowdCart2)
 View the project planning docs [here](https://docs.google.com/spreadsheets/d/17VOjBqNdDPgaP92LqQ3HTSedvwyuyb4FPGGdkN2sSXo/edit#gid=454523850)
 
 
