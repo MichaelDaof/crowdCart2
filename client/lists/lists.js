@@ -38,6 +38,7 @@ angular.module("crowdcart.lists", ["angularMoment"])
     // Get all lists
     Lists.getAllList()
       .then(function(allLists){
+        console.log('alllists', allLists)
         $scope.data.allLists = allLists.filter(function(list){
           //Only showing the list that has not deliverer, and those that do not belong to user, and not overdue
           return !list.deliverer_id && list.creator_id !== $scope.userid && new Date(list.due_at) >= new Date();
@@ -106,6 +107,19 @@ angular.module("crowdcart.lists", ["angularMoment"])
       .catch(function (error) {
         console.log(error);
       });
+  }
+
+  $scope.addItemToList = function(item) {
+    $scope.displayList.update = true;
+    console.log($scope.displayList)
+    $scope.displayList.items.push(item)
+    Lists.updateList($scope.displayList)
+      .then(function(res) {
+        console.log('added item', res)
+      })
+      .catch(function(err){
+        console.log(err)
+      })
   }
 
 

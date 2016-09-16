@@ -12,6 +12,7 @@ var ListSchema = new mongoose.Schema({
   creator_id: String,
   deliverer_id: String,
   collab_email: String,
+  draft: String,
   //items is a array containing all list items
   //Each item should be follow this structure:
   // {

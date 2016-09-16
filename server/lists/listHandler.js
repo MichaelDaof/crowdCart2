@@ -50,6 +50,8 @@ module.exports = {
     var id = req.body.creator_id;
     var due_at = req.body.due_at;
     var name = req.body.name;
+    var updatedItems = req.body.items;
+    console.log(req.body)
 
     // var conditions = {'creator_id': id, 'due_at': due_at, 'name': name, 'deliverer_id': ''};
     // var update = {'deliverer_id': req.body.deliverer_id};
@@ -63,7 +65,12 @@ module.exports = {
           }
           list.deliverer_id = req.body.deliverer_id;
           list.collab_email = req.body.collab_email;
-          if (list.collab_email) {
+          console.log(list, list.update)
+          if (updatedItems) {
+            list.items = updatedItems;
+            list.save();
+            res.json(list)
+          } else if (list.collab_email) {
             User.find({"email": list.collab_email}, function(err, user){
               if (user.length === 0) {
                 res.json('user does not exist')
@@ -74,19 +81,19 @@ module.exports = {
                   var listCopy = list;
                   listCopy._id = ObjectId();
                   listCopy.isNew = true;
-                  listCopy.save()
+                  listCopy.save();
                   _copyCollabList(listCopy, user);
                 }
-
-                list.save(cb)
-                res.json(list)
+                list.draft = id;
+                list.save(cb);
+                res.json(list);
               }
             })
           } else {
             list.save();
             res.json(list);
           }
-        }
+        }.bind(this)
     );
 
   },

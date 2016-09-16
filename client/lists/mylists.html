@@ -29,8 +29,9 @@
             </div>
           </td>
           <td><a ng-click="deleteList(this.list._id, $index)" class="btn btn-primary btn-sm active">Delete List</a></td>
-          <td ng-if="!list.deliverer_id">Open</td>
-          <td ng-if="!!list.deliverer_id">In Work!</td>
+          <td ng-if="list.draft"><a ng-click="displayDetail(this.list._id)" class="btn btn-primary btn-sm active">Edit Draft</a></td>
+          <td ng-if="!list.deliverer_id && !list.draft">Open</td>
+          <td ng-if="!!list.deliverer_id && !!list.draft">In Work!</td>
         </tr>
       </tbody>
     </table>
