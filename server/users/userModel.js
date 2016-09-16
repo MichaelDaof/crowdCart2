@@ -14,7 +14,9 @@ var UserSchema = new mongoose.Schema({
     city: String,
     state: String,
     zip_code: Number
-  }
+  },
+  verified: { type: Boolean, default: false },
+  warning: { type: Boolean, default: false }
 });
 
 UserSchema.methods.comparePasswords = function(enteredPassword, callback) {
