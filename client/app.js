@@ -11,6 +11,10 @@ angular.module("crowdcart", [
 //config/routing
 .config(function ($routeProvider, $httpProvider) {
   $routeProvider
+    .when('/admin', {
+      templateUrl: 'admin/adminPanel.html',
+      controller: 'AdminController'
+    })
     .when('/signin', {
       templateUrl: 'auth/signin.html',
       controller: 'AuthController'

@@ -1,5 +1,5 @@
 angular.module('crowdCart.admin', [])
 
-.controller('adminController', function ($scope, $window, $location) {
+.controller('AdminController', function ($scope, $window, $location) {
 
   };
