@@ -19,6 +19,7 @@ var ListSchema = new mongoose.Schema({
   //    quantity:  Number,
   //    unite_price: Number  //this is typo, and too late to change for us.
   // }
+
   items : [],
   total_price: Number,
   offer_price: Number,
