@@ -17,3 +17,6 @@ describe('the crowdCart2 server', function() {
   //put all your tests related to the back end in here!(stuff in the server folder)
 
 });
+
+
+// as a reminder, you'll need to run npm install before you can do npm test
