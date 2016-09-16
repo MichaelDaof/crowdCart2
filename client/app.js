@@ -4,6 +4,7 @@ angular.module("crowdcart", [
   "crowdcart.lists",
   "crowdcart.jobs",
   "crowdcart.services",
+  "crowdcart.validation",
   "ngRoute",
   "ui.bootstrap"
 ])
@@ -52,6 +53,11 @@ angular.module("crowdcart", [
       controller: 'ListsController'
       // // authentication removed to be sharable link
       // authenticate: true
+    })
+    .when('/validation', {
+      templateUrl: 'validation/validation.html',
+      controller: 'ValidationController',
+      authenticate: true
     })
 
     .otherwise({

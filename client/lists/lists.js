@@ -128,7 +128,7 @@ angular.module("crowdcart.lists", ["angularMoment"])
     var geocoder;
     var map;
     geocoder = new google.maps.Geocoder();
-    var latlng = new google.maps.LatLng(-34.397, 150.644);
+    var latlng = new google.maps.LatLng(53.526, -1.625);
 
 
     var myOptions = {
