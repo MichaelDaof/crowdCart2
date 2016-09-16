@@ -4,9 +4,9 @@
 
 ## Team
 
-  - __Product Owner__: Michael Daof
-  - __Scrum Master__: Jason Holtkamp
-  - __Development Team Members__: Patrik Korzinski, Jim Yang
+  - __Product Owner__: Michael Daof (@MichaelDaof)
+  - __Scrum Master__: Jason Holtkamp (@holtkam2)
+  - __Development Team Members__: Patrik Korzinski (@pkorzinski), Jim Yang (@sourjam)
   - __Original Codebase By__: Team Dancing-Penguin (Ali Bhatti, Daniel Chang, Daniel Van Vleck, Henry Yang)
 
 ## Table of Contents
