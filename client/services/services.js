@@ -2,6 +2,17 @@
 
 angular.module("crowdcart.services",[])
 
+
+
+.factory("Admin", function($http) {
+
+
+
+});
+
+
+
+
 .factory("Auth", function($http, $location, $window) {
 
   // signin
