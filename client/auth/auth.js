@@ -21,11 +21,14 @@ angular.module('crowdcart.auth', [])// make an auth module
   };
 
   $scope.signup = function () {
+    console.log("sign up test: ", $window.Stripe, $scope.stripe)
     Auth.signup($scope.user)
       .then(function (data) {
         $window.localStorage.setItem('crowdcarttoken', data.token);
         // saving username to localstorage
         $window.localStorage.setItem('crowdcartuser', data.userid);
+
+        // perform second request to Stripe for user/source tokeninzation
         $location.path('/mylists');
       })
       .catch(function (error) {

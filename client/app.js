@@ -59,7 +59,6 @@ angular.module("crowdcart", [
     });
 
     $httpProvider.interceptors.push('AttachTokens');
-
 })
 
 // main app controller, not inside a ng-view, hanldes signout
