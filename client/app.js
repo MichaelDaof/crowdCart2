@@ -63,7 +63,7 @@ angular.module("crowdcart", [
   $rootScope.hasSession = Auth.isAuthenticated();
   $scope.signout = function(){
     Auth.signout();
-  }
+  };
 })
 
 .factory('AttachTokens', function ($window) {
