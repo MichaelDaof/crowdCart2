@@ -10,17 +10,12 @@
     "url": "https://github.com/hrr18-doge/crowdCart2.git"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "mocha"
   },
   "engines": {
     "node": "^6.2.2"
   },
-
-  "scripts": {
-    "test":"mocha"
-  },
-  "license": "UNLICENSED",
-  "private": true,
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.4.3",
