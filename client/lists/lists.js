@@ -22,6 +22,7 @@ angular.module("crowdcart.lists", ["angularMoment"])
       // get list data and store on scope
       Lists.getOneList($routeParams.listid)
         .then(function (list) {
+          console.log(list)
           $scope.displayList = list
         })
     }

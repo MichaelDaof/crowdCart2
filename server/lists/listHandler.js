@@ -33,13 +33,14 @@ module.exports = {
   // addList method
   addList: function(req, res){
     var newListObj = req.body;
-
     List.create(newListObj, function(err, list){
       if (err) { // notifies if error is thrown
         console.log("mongo create list err: ", err);
         helper.sendError(err, req, res);
       } else { // list created, sends 201 status
         //res.status(201);
+        list.draftObj = list._id;
+        list.save();
         res.json(list);
       }
     });
@@ -52,6 +53,10 @@ module.exports = {
     var name = req.body.name;
     var updatedItems = req.body.items;
     console.log(req.body)
+    var draftId = req.body.draft;
+    if (draftId && draftId !== id) {
+      id = draftId;
+    }
 
     // var conditions = {'creator_id': id, 'due_at': due_at, 'name': name, 'deliverer_id': ''};
     // var update = {'deliverer_id': req.body.deliverer_id};
@@ -66,7 +71,7 @@ module.exports = {
           list.deliverer_id = req.body.deliverer_id;
           list.collab_email = req.body.collab_email;
           console.log(list, list.update)
-          if (updatedItems) {
+          if (updatedItems && draftId) {
             list.items = updatedItems;
             list.save();
             res.json(list)
