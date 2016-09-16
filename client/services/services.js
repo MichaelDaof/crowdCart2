@@ -145,6 +145,7 @@ angular.module("crowdcart.services",[])
   }
 
 })
+
 .factory("Jobs", function($http) {
 
   // get all jobs for specific user
