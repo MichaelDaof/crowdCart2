@@ -5,6 +5,8 @@
 
 <head>
   <title>CrowdCart!</title>
+  <meta name="viewport" content="width=device-width">
+
   <!-- two stylesheets, bootstrap and raw css -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="style.css">
@@ -18,10 +20,12 @@
     'fadeaway': !hasSession
   }"></div>
   <div class="top-nav">
-    <div class="top-logo">
-      <img src="assets/crowdcartlogov2.png" />
-      <span class="logo-bg"></span>
-    </div>
+    <a href="/">
+      <div class="top-logo">
+        <img src="assets/crowdcartlogov2.png" />
+        <span class="logo-bg"></span>
+      </div>
+    </a>
     <div class="top-nav-left hide" ng-class="{
       'show': hasSession
     }">

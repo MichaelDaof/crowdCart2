@@ -173,12 +173,19 @@ body .bg {
 }
 
 .field--signup {
-  border: none;
   border-radius: 5px;
   padding: 10px;
 }
 
 @media (max-width: 760px) and (orientation: portrait) {
+  body .bg {
+    background-size: contain;
+  }
+
+  .frontCopy, .signin-inner {
+    position: initial;
+  }
+
   .top-logo {
     display: flex;
     flex-direction: column;
