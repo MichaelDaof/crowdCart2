@@ -2,20 +2,21 @@
 
 <div class="signup-outer">
   <div class="signup-inner">
+    <p>Welcome!<br>We're glad you could make it</p>
     <form name="signup-form" ng-submit="signup()">
-      <div class="signup-field"><input type="text" ng-model="user.username" placeholder="Username"></div>
-      <div class="signup-field"><input type="email" ng-model="user.email" placeholder="Email"></div>
-      <div class="signup-field"><input type="text" ng-model="user.name.first" placeholder="First Name"></div>
-      <div class="signup-field"><input type="text" ng-model="user.name.last" placeholder="Last Name"></div>
-      <div class="signup-field"><input type="password" ng-model="user.password" placeholder="Password"></div>
-      <div class="signup-field"><input type="text" ng-model="user.address.street" placeholder="Street Address"></div>
-      <div class="signup-field"><input type="text" ng-model="user.address.city" placeholder="City"></div>
-      <div class="signup-field"><input type="text" ng-model="user.address.state" placeholder="State"></div>
-      <div class="signup-field"><input type="number" ng-model="user.address.zip_code" placeholder="ZIP"></div>
+      <div class="signup-field"><input class="field--signup" type="text" ng-model="user.username" placeholder="Username"></div>
+      <div class="signup-field"><input class="field--signup" type="email" ng-model="user.email" placeholder="Email"></div>
+      <div class="signup-field"><input class="field--signup" type="text" ng-model="user.name.first" placeholder="First Name"></div>
+      <div class="signup-field"><input class="field--signup" type="text" ng-model="user.name.last" placeholder="Last Name"></div>
+      <div class="signup-field"><input class="field--signup" type="password" ng-model="user.password" placeholder="Password"></div>
+      <div class="signup-field"><input class="field--signup" type="text" ng-model="user.address.street" placeholder="Street Address"></div>
+      <div class="signup-field"><input class="field--signup" type="text" ng-model="user.address.city" placeholder="City"></div>
+      <div class="signup-field"><input class="field--signup" type="text" ng-model="user.address.state" placeholder="State"></div>
+      <div class="signup-field"><input class="field--signup" type="number" ng-model="user.address.zip_code" placeholder="ZIP"></div>
       <button class="btn btn-success">Sign Up</button>
     </form>
     <div>
-      <a href="#/signin" style="color: white">Already have an account? <strong>Signin</strong>...</a>
+      <a href="#/signin" style="color: white">Already have an account? <strong>Sign in</strong>...</a>
     </div>
   </div>
 </div>
