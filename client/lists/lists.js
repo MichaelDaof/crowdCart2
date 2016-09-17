@@ -134,10 +134,24 @@ angular.module("crowdcart.lists", ["angularMoment"])
     Lists.updateList(list)
       .then(function(res) {
         console.log('list updated with collaborator', res)
+        $location.path('/mylists')
       })
       .catch(function (error) {
         console.log(error)
       });
+  }
+
+  $scope.submitDraft = function() {
+    $scope.displayList.draft = 'final';
+    console.log($scope.displayList)
+    Lists.updateList($scope.displayList)
+      .then(function(res){
+        $location.path('/mylists')
+        console.log(res)
+      })
+      .catch(function(err){
+        console.log(err);
+      })
   }
 
   //Google Map initializer

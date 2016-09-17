@@ -19,6 +19,19 @@ var mongoose = require('mongoose');
         console.log('new list created', res)
       })
     })
+  };
+
+  var _removeCollabList = function(draftObj) {
+    List.find({"draftObj": draftObj}, function(err, results){
+      results.forEach(function(item){
+        if (item.submitted !== true) {
+          console.log(item)
+          List.remove({"_id": item._id}, function(err, results){
+            if (err) {console.log(err)}
+          })
+        }
+      })
+    })
   }
 
 
@@ -54,7 +67,7 @@ module.exports = {
     var updatedItems = req.body.items;
     console.log(req.body)
     var draftObj = req.body.draftObj;
-
+    var draft = req.body.draft;
     // var conditions = {'creator_id': id, 'due_at': due_at, 'name': name, 'deliverer_id': ''};
     // var update = {'deliverer_id': req.body.deliverer_id};
 
@@ -68,7 +81,20 @@ module.exports = {
           list.deliverer_id = req.body.deliverer_id;
           list.collab_email = req.body.collab_email;
           console.log(list, list.update)
-          if (updatedItems && draftObj) {
+           if (draft === 'final') {
+            list.draft = null;
+            list.submitted = true;
+            list.save(function(err){
+              _removeCollabList(list.draftObj)
+            });
+            res.json(list)
+          } else if (updatedItems && draft) {
+            // if (draft === 'final') {
+            //   list.draft = null;
+            //   list.submitted = true;
+            //   list.save();
+            //   _removeCollabList(list.draftObj)
+            // }
             list.items = updatedItems;
             list.save();
             res.json(list)

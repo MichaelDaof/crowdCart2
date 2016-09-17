@@ -14,6 +14,7 @@ var ListSchema = new mongoose.Schema({
   collab_email: String,
   draft: String,
   draftObj: String,
+  submitted: Boolean,
   //items is a array containing all list items
   //Each item should be follow this structure:
   // {
