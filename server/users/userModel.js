@@ -17,7 +17,11 @@ var UserSchema = new mongoose.Schema({
   },
   verified: { type: Boolean, default: false },
   warning: { type: Boolean, default: false },
-  stripe: { type: Boolean, default: false }
+  stripe: {
+    verified: { type: Boolean, default: false },
+    customer: String,
+    account: String
+  }
 });
 
 UserSchema.methods.comparePasswords = function(enteredPassword, callback) {

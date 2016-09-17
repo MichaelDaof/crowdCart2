@@ -44,6 +44,6 @@ module.exports = function(app, express){
 
   /////////// STRIPE TRANSACTIONS /////////////////////
   // Uses Stripe-Node API with token received from client-side Stripe.js API
-  app.post('/api/stripe_customers', transHandler.createStripeCustomer)
+  app.post('/api/stripe_customers', transHandler.initializeStripe)
 
 };
