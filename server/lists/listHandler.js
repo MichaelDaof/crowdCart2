@@ -183,6 +183,7 @@ module.exports = {
   getAllLists: function(req, res){
     List.find({})
       .then(function(lists){ // returns array of lists
+        console.log("getAllLists function called within listHandler")
         res.json(lists);
       });
   },

@@ -5,12 +5,11 @@ angular.module("crowdcart.admin", ["crowdcart.services"])
     $scope.data = {};
 
     $scope.getAllUsers = function(){
-      console.log("getAllUsers function called");
       $scope.data.users = Admin.getAllUsers();
     }
 
     $scope.getAllLists = function(){
-      console.log("getAllLists function called");
+      $scope.data.lists = Admin.getAllLists();
     }
 
     $scope.displayAnalytics = function(){

@@ -8,20 +8,31 @@ angular.module("crowdcart.services",[])
 
   var getAllUsers = function() {
 
-    console.log("getAllUsers is being called!")
-
       return $http({
         method: "GET",
         url: "/api/users"
       })
       .then(function(res){
+        console.log("here's the user data I found: "+ res.data)
+        return res.data;
+    });
+  };
+
+  var getAllLists = function(){
+      return $http({
+        method: "GET",
+        url: "/api/lists"
+      })
+      .then(function(res){
+        console.log("here's the lists data I found: "+res.data)
         return res.data;
     });
 
-  };
+  }
 
   return {
-    getAllUsers:getAllUsers
+    getAllUsers:getAllUsers,
+    getAllLists:getAllLists
   }
 
 })
