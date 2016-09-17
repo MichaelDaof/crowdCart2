@@ -81,6 +81,7 @@ module.exports = {
       if (err){
         console.error(err);
       } else {
+        console.log("getAllUsers function called in UserHandler")
         res.json(users);
       }
     })
