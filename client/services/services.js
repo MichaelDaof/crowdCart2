@@ -204,13 +204,22 @@ angular.module("crowdcart.services",[])
 })
 
 .factory("CCAuth", function ($http, $window){
+
   var stripeResponseHandler = function (status, response){
     if (response.error){
       console.log("Failed to create user/source token: ", response.error)
     } else {
       var token = response.id;
+      var userWithToken = {
+        token: token
+      }
       console.log("Successfully created source token: ", token) //works!
       // now send back to server for server-side customer creation
+      return $http({
+        method: "POST",
+        url: "/api/stripe_customers",
+        data: JSON.stringify(userWithToken)
+      })
     }
   };
 

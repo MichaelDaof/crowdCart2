@@ -1,6 +1,7 @@
 // require userHandler, listHandler
 var userHandler = require('../users/userHandler.js');
 var listHandler = require('../lists/listHandler.js');
+var transHandler = require('../trans/transHandler.js')
 
 // export function
 module.exports = function(app, express){
@@ -39,6 +40,8 @@ module.exports = function(app, express){
   // POST - updateStatus (reflects when jobs/lists are assigned)
   app.post('/api/status', listHandler.updateStatus);
 
-  // Will probably need more routes over time
+  /////////// STRIPE TRANSACTIONS /////////////////////
+  // Uses Stripe-Node API with token received from client-side Stripe.js API
+  app.post('/api/stripe_customers', transHandler.createStripeCustomer)
 
 };
