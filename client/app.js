@@ -1,6 +1,7 @@
 // create the crowdcart app
 angular.module("crowdcart", [
   "crowdcart.auth",
+  "crowdcart.financial",
   "crowdcart.lists",
   "crowdcart.jobs",
   "crowdcart.services",
@@ -24,6 +25,10 @@ angular.module("crowdcart", [
     .when('/signup', {
       templateUrl: 'auth/signup.html',
       controller: 'AuthController'
+    })
+    .when('/cc-input', {
+      templateUrl: 'auth/financial.html',
+      controller: 'FinancialController'
     })
     .when('/logout', {
       templateUrl: 'auth/signin.html',
@@ -98,7 +103,7 @@ angular.module("crowdcart", [
 // run directive
 .run(function($rootScope, $location, $window, Auth){
   $rootScope.$on('$routeChangeStart', function(event, next, current){
-    // console.log("NEXT: ", next);
+
     if (next.$$route && next.$$route.authenticate && !Auth.isAuthenticated()) {
       $location.path('/signin');
     }

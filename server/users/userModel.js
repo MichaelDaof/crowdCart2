@@ -16,7 +16,8 @@ var UserSchema = new mongoose.Schema({
     zip_code: Number
   },
   verified: { type: Boolean, default: false },
-  warning: { type: Boolean, default: false }
+  warning: { type: Boolean, default: false },
+  stripe: { type: Boolean, default: false }
 });
 
 UserSchema.methods.comparePasswords = function(enteredPassword, callback) {

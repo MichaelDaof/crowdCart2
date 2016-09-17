@@ -12,13 +12,7 @@
       <div class="signup-field"><input type="text" ng-model="user.address.city" placeholder="City"></div>
       <div class="signup-field"><input type="text" ng-model="user.address.state" placeholder="State"></div>
       <div class="signup-field"><input type="number" ng-model="user.address.zip_code" placeholder="ZIP"></div>
-      <!-- credit card request straight to Stripe -->
-      <p style="color: white">Payment through Stripe</p>
-      <div class="signup-field"><input type="string" ng-model="stripe.number" placeholder="Credit Card Number"></div>
-      <div class="signup-field"><input type="number" ng-model="stripe.exp_month" placeholder="Two Digits - ex: 04"></div>
-      <div class="signup-field"><input type="number" ng-model="stripe.exp_year" placeholder="Year"></div>
-      <!-- <div class="signup-field"><input type="string" ng-model="stripe.address_zip" placeholder="Billing Zip Code"></div> -->
-      <button>Sign Up</button>
+      <button class="btn btn-success">Sign Up</button>
     </form>
     <div>
       <a href="#/signin" style="color: white">Already have an account? <strong>Signin</strong>...</a>
