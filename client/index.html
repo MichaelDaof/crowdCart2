@@ -8,6 +8,7 @@
   <!-- two stylesheets, bootstrap and raw css -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Oswald|Quattrocento" rel="stylesheet">
   <!-- client-side cc handling with Stripe, must be loaded from source -->
   <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 </head>
@@ -17,22 +18,26 @@
     <div class="top-logo">
       <img src="assets/crowdcartlogov2.png" />
     </div>
-    <div class="top-nav-left">
+    <div class="top-nav-left hidden" ng-class="{
+      'show': hasSession
+    }">
       <span><a href='#/mylists' class="btn btn-primary btn-lg active top-nav-button">My Lists</a></span>
       <span><a href='#/alllists' class="btn btn-primary btn-lg active top-nav-button">All Lists</a></span>
       <span><a href='#/myjobs' class="btn btn-primary btn-lg active top-nav-button">My Jobs</a></span>
     </div>
-    <div class="top-nav-right" ng-if="hasSession">
+    <div class="top-nav-right hidden" ng-class="{
+      'show': hasSession
+    }">
       <span><a ng-click="signout()" href='#/logout' class="btn pull-right btn-primary btn-default active">Log Out</a></span>
       <span><a ng-click="admin()" href='#/admin' class="btn pull-right btn-primary btn-default active">Admin</a></span>
       <span><a href='#/validation' class="btn pull-right btn-primary btn-default active">Validate</a></span>
     </div>
   </div>
   <div class="jumbotron" ng-if="!hasSession">
-    <h1 class="display-3">CrowdCart</h1>
-    <p class="lead">Grocery List? Chuck it to the crowd. Crowdsourcing at its finest.</p>
-    <hr class="m-y-2">
-    <p class="lead">
+    <h1 class="display-3 text-center font--heading">CrowdCart</h1>
+    <p class="lead text-center">Grocery List? Chuck it to the crowd. Crowdsourcing at its finest.</p>
+    <!-- <hr class="m-y-2"> -->
+    <!-- <p class="lead">
       <div class="delivery-address">
         <uib-accordion>
           <div uib-accordion-group class="panel-default" is-open="status.open">
@@ -48,7 +53,7 @@
           </div>
         </uib-accordion>
       </div>
-    </p>
+    </p> -->
   </div>
 
   <div ng-view></div>
