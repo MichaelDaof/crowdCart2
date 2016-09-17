@@ -2,7 +2,7 @@
 
 <div class="signup-outer">
   <div class="signup-inner">
-    <form name="signup-form" ng-submit="signup()">
+    <form name="signup-form" ng-submit="createStripeToken()">
       <!-- credit card request straight to Stripe -->
       <h3 style="color: white">Payment through Stripe</h3>
       <div class="signup-field"><input type="string" ng-model="stripe.number" placeholder="Credit Card Number"></div>
