@@ -6,9 +6,11 @@ var transHandler = require('../trans/transHandler.js')
 // export function
 module.exports = function(app, express){
 
-  // TODO:  Coordinate with frontend on
-  //        the request url names ('/api/...')
-  app.get('/api/users', userHandler.getAllUsers)
+
+  app.get('/api/users', userHandler.getAllUsers);
+
+  app.get('/api/lists', listHandler.getAllLists);
+
   // POST - signin
   app.post('/api/signin', userHandler.signin);
 
@@ -42,6 +44,6 @@ module.exports = function(app, express){
 
   /////////// STRIPE TRANSACTIONS /////////////////////
   // Uses Stripe-Node API with token received from client-side Stripe.js API
-  app.post('/api/stripe_customers', transHandler.createStripeCustomer)
+  app.post('/api/stripe_customers', transHandler.initializeStripe)
 
 };

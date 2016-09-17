@@ -17,8 +17,20 @@
 
 <body ng-controller="AppController">
   <div class="bg" ng-class="{
-    'fadeaway': !hasSession
-  }"></div>
+    'fadeaway': !hasSession}">
+  </div>
+  <div id="fb-root"></div>
+  <script>
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+          return;
+        }
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=1699394553718099";
+        fjs.parentNode.insertBefore(js, fjs);
+      } (document, 'script', 'facebook-jssdk'));
+  </script>
   <div class="top-nav">
     <a href="/">
       <div class="top-logo">
@@ -41,10 +53,17 @@
       <span><a href='#/validation' class="btn pull-right btn-primary btn-default active">Validate</a></span>
     </div>
   </div>
+<<<<<<< HEAD
 
   <!-- <div class="jumbotron" ng-if="!hasSession">
     <h1 class="display-3 text-center font--heading">CrowdCart</h1>
     <p class="lead text-center">Grocery List? Chuck it to the crowd. Crowdsourcing at its finest.</p>
+=======
+  <div class="jumbotron" ng-if="!hasSession">
+
+    <h1 class="display-3">CrowdCart</h1>
+    <p class="lead">Grocery List? Chuck it to the crowd. Crowdsourcing at its finest.</p>
+>>>>>>> master
     <hr class="m-y-2">
     <p class="lead">
       <div class="delivery-address">
