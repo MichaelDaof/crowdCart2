@@ -235,7 +235,8 @@ angular.module("crowdcart.services",[])
     } else {
       var token = response.id;
       var userWithToken = {
-        token: token
+        token: token,
+        userid: $window.localStorage.getItem('crowdcartuser')
       }
       console.log("Successfully created source token: ", token) //works!
       // now send back to server for server-side customer creation

@@ -9,7 +9,7 @@ angular.module("crowdcart.lists", ["angularMoment"])
   $scope.list.items = [];
 
   // store userid into local storage (same level as auth token)
-   $scope.userid = $window.localStorage.getItem('crowdcartuser');
+  $scope.userid = $window.localStorage.getItem('crowdcartuser');
   $scope.street = $window.localStorage.getItem('crowdcartuserstreet');
   $scope.state = $window.localStorage.getItem('crowdcartuserstate');
   $scope.city = $window.localStorage.getItem('crowdcartusercity');
