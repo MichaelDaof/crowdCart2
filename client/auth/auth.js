@@ -23,17 +23,16 @@ angular.module('crowdcart.auth', [])// make an auth module
   $scope.signup = function () {
     // getToken is outside async call for testing purposes
     // should live in Auth.signup callback to be executed AFTER user creation
-    CCAuth.getToken($scope.stripe)
+    // CCAuth.getToken($scope.stripe)
     Auth.signup($scope.user)
       .then(function (data) {
         $window.localStorage.setItem('crowdcarttoken', data.token);
         // saving username to localstorage
         $window.localStorage.setItem('crowdcartuser', data.userid);
 
-        // perform second request to Stripe for user/source tokeninzation
-        // or maybe even in a "then"?
+        $location.path('/cc-input')
 
-        $location.path('/mylists');
+        // $location.path('/mylists');
       })
       .catch(function (error) {
         console.error(error);

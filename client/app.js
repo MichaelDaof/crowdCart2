@@ -25,6 +25,10 @@ angular.module("crowdcart", [
       templateUrl: 'auth/signup.html',
       controller: 'AuthController'
     })
+    .when('/cc-input', {
+      templateUrl: 'auth/financial.html',
+      controller: 'FinancialController'
+    })
     .when('/logout', {
       templateUrl: 'auth/signin.html',
       controller: 'AuthController'
@@ -98,7 +102,7 @@ angular.module("crowdcart", [
 // run directive
 .run(function($rootScope, $location, $window, Auth){
   $rootScope.$on('$routeChangeStart', function(event, next, current){
-    // console.log("NEXT: ", next);
+
     if (next.$$route && next.$$route.authenticate && !Auth.isAuthenticated()) {
       $location.path('/signin');
     }
