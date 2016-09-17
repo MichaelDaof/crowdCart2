@@ -1,10 +1,10 @@
 <div class="adminPanel">
   <h1>CrowdCart Admin Panel</h1>
 
-  <div ng-click="" class="btn pull-right btn-primary btn-default active">All Users</div>
-  <div ng-click="" class="btn pull-right btn-primary btn-default active">All Lists</div>
-  <div ng-click="" class="btn pull-right btn-primary btn-default active">Analytics</div>
+  <div ng-click="getAllUsers()" class="btn pull-right btn-primary btn-default active">All Users</div>
+  <div ng-click="getAllLists()" class="btn pull-right btn-primary btn-default active">All Lists</div>
+  <div ng-click="displayAnalytics()" class="btn pull-right btn-primary btn-default active">Analytics</div>
 
-  <div>Controller will put content in this div depending on the button clicked above</div>
+  <div>{{data}}</div>
 
 </div>

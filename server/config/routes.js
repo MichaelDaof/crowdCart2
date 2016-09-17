@@ -7,7 +7,7 @@ module.exports = function(app, express){
 
   // TODO:  Coordinate with frontend on
   //        the request url names ('/api/...')
-
+  app.get('/api/users', userHandler.getAllUsers)
   // POST - signin
   app.post('/api/signin', userHandler.signin);
 

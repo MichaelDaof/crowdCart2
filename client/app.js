@@ -6,6 +6,7 @@ angular.module("crowdcart", [
   "crowdcart.services",
   "crowdcart.validation",
   "ngRoute",
+  "crowdcart.admin",
   "ui.bootstrap"
 ])
 
