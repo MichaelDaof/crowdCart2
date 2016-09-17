@@ -91,6 +91,10 @@ angular.module("crowdcart.lists", ["angularMoment"])
       })
   }
 
+  // reroute to financial view
+  $scope.goToFinancial = function (){
+    $location.path('/cc-input');
+  }
 
   //Add a job, update the deliverer id to user's id
   $scope.addJob = function(list) {
@@ -291,6 +295,3 @@ angular.module("crowdcart.lists", ["angularMoment"])
     return '';
   }
 });
-
-
-

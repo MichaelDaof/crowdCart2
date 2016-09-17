@@ -1,0 +1,14 @@
+<!-- financial sign up -->
+
+<div class="signup-outer">
+  <div class="signup-inner">
+    <form name="signup-form" ng-submit="signup()">
+      <!-- credit card request straight to Stripe -->
+      <h3 style="color: white">Payment through Stripe</h3>
+      <div class="signup-field"><input type="string" ng-model="stripe.number" placeholder="Credit Card Number"></div>
+      <div class="signup-field"><input type="number" ng-model="stripe.exp_month" placeholder="Exp Month - ex: 04"></div>
+      <div class="signup-field"><input type="number" ng-model="stripe.exp_year" placeholder="Exp Year"></div>
+      <button class="btn btn-success">Enter Payment</button>
+    </form>
+  </div>
+</div>
