@@ -21,21 +21,24 @@
   </div>
   <div id="fb-root"></div>
   <script>
-      (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {
-          return;
-        }
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=1699394553718099";
-        fjs.parentNode.insertBefore(js, fjs);
-      } (document, 'script', 'facebook-jssdk'));
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {
+        return;
+      }
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=1699394553718099";
+      fjs.parentNode.insertBefore(js, fjs);
+    } (document, 'script', 'facebook-jssdk'));
   </script>
   <div class="top-nav">
-    <a href="/">
-      <div class="top-logo">
-        <img src="assets/crowdcartlogov2.png" />
-        <span class="logo-bg"></span>
+    <a href="/" style="text-decoration: none">
+      <div class="top-logo" >
+        <img src="assets/crowd.png" />
+        <div id="stage" style="display: inline-block">
+          <p id="spinner"> <img src="assets/cartspinnerFront.png" /></p>
+        </div>
+        <img src="assets/cart.png" />
       </div>
     </a>
     <div class="top-nav-left hide" ng-class="{
