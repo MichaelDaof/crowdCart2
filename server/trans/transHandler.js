@@ -14,10 +14,10 @@ var updateUserStripeId = function (req, res, userid, type, stripeId, cb){
           if (err){
             console.error("Failed to udpate user stripe " + type.toUpperCase() + ": ", user.stripe)
           } else {
-            console.log("Successfully updated user stripe " + type.toUpperCase() + ": ", user.stripe)
             if (cb){
               cb(req, res, userid)
             } else {
+              console.log("Successfully updated user with stripe CUSTOMER and ACCOUNT id: ", user.stripe)
               res.end()
             }
           }
@@ -43,7 +43,6 @@ var createStripeCustomer = function (req, res, userid, token){
           "customer",
           customer.id,
           createStripeAccount)
-        console.log("Successfully created stripe customer: ", customer.id)
       }
     });
 
@@ -60,7 +59,6 @@ var createStripeAccount = function (req, res, user){
         helper.sendError(err, req, res);
       } else {
         updateUserStripeId(req, res, user, "account", account.id)
-        console.log("Successfully created stripe account: ", account.id)
       }
     });
 
