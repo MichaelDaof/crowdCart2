@@ -8,15 +8,28 @@ module.exports = {
       source: req.body.token
     };
 
-    stripe.customers.create(createCustomerObject, function(err, customer) {
+    // stripe.customers.create(createCustomerObject, function(err, customer) {
+    //   if (err){
+    //     console.error(err)
+    //     helper.sendError(err, req, res)
+    //   } else {
+    //     // TODO: Update user (will probably need userid in that customer
+    //     // response body)
+    //     console.log("Successfully created stripe customer: ", customer.id)
+    //     res.end()
+    //   }
+    // });
+
+    stripe.accounts.create({
+      managed: true,
+      country: 'US',
+      email: 'bob@bobexamplebob.com'
+    }, function(err, account) {
       if (err){
-        console.error(err)
-        helper.sendError(err, req, res)
+        console.error(err);
+        helper.sendError(err, req, res);
       } else {
-        // TODO: Update user (will probably need userid in that customer
-        // response body)
-        console.log("Successfully created stripe customer: ", customer.id)
-        res.end()
+        console.log("Successfully created stripe account: ", account)
       }
     });
   }
