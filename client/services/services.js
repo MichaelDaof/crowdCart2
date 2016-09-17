@@ -6,10 +6,23 @@ angular.module("crowdcart.services",[])
 
 .factory("Admin", function($http) {
 
-  var admin = function(user) {
+  var getAllUsers = function() {
+
+    console.log("getAllUsers is being called!")
+
+      return $http({
+        method: "GET",
+        url: "/api/users"
+      })
+      .then(function(res){
+        return res.data;
+    });
 
   };
 
+  return {
+    getAllUsers:getAllUsers
+  }
 
 })
 
