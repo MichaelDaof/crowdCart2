@@ -22,7 +22,6 @@ angular.module("crowdcart.lists", ["angularMoment"])
       // get list data and store on scope
       Lists.getOneList($routeParams.listid)
         .then(function (list) {
-          console.log(list)
           $scope.displayList = list
         })
     }
@@ -43,6 +42,9 @@ angular.module("crowdcart.lists", ["angularMoment"])
         $scope.data.allLists = allLists.filter(function(list){
           //Only showing the list that has not deliverer, and those that do not belong to user, and not overdue
           // return !list.deliverer_id && list.creator_id !== $scope.userid && new Date(list.due_at) >= new Date();
+          //JY
+          // TODO: Add date verification if user puts nothing for date
+          // Currently old line has been commented out above.
           return !list.deliverer_id && list.creator_id !== $scope.userid
         });
       })
@@ -111,9 +113,11 @@ angular.module("crowdcart.lists", ["angularMoment"])
       });
   }
 
+
+  // Adds an item to the list in draft/collab mode
+  // update = true is used for server to determine whether it's a new list.
   $scope.addItemToList = function(item) {
     $scope.displayList.update = true;
-    console.log($scope.displayList)
     if ($scope.displayList.creator_id !== $scope.userid) {
       item.collab = $scope.displayList.collab_email;
     }
@@ -141,6 +145,9 @@ angular.module("crowdcart.lists", ["angularMoment"])
       });
   }
 
+  //Submit a draft from collab mode
+  // Will set the list to open afterrefresh
+  // TODO: Auto refresh page after submission
   $scope.submitDraft = function() {
     $scope.displayList.draft = 'final';
     console.log($scope.displayList)

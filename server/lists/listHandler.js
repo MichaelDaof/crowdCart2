@@ -6,14 +6,14 @@ var ObjectId = require('mongodb').ObjectId;
 var mongoose = require('mongoose');
 
   // copies list into collaborator's account
+  // finds the collab user's account to grab their info
+  // TODO: refactor since some unneeded data might be saved here
   var _copyCollabList = function(list, secondUser) {
-    console.log('list to copy', list)
     var obj_id = new ObjectId(list.creator_id);
     User.find({"_id": obj_id}, function(err, firstUser){
       if (err) {};
       list.collab_email = firstUser[0].email;
       list.creator_id = secondUser[0]._id;
-      console.log('email', firstUser[0].email, secondUser[0])
       List.create(list, function(err, res){
         if (err) {}
         console.log('new list created', res)
@@ -21,6 +21,8 @@ var mongoose = require('mongoose');
     })
   };
 
+  // deletes any collab list that does not have submitted = true
+  // submitted is used to verify which has the original copy
   var _removeCollabList = function(draftObj) {
     List.find({"draftObj": draftObj}, function(err, results){
       results.forEach(function(item){
@@ -64,8 +66,10 @@ module.exports = {
     var id = req.body.creator_id;
     var due_at = req.body.due_at;
     var name = req.body.name;
+    // updatedItems are for new collab items added in draft mode
+    // draftObj is the mongo ID for the original list
+    // draft is the original creator's ID
     var updatedItems = req.body.items;
-    console.log(req.body)
     var draftObj = req.body.draftObj;
     var draft = req.body.draft;
     // var conditions = {'creator_id': id, 'due_at': due_at, 'name': name, 'deliverer_id': ''};
@@ -80,8 +84,12 @@ module.exports = {
           }
           list.deliverer_id = req.body.deliverer_id;
           list.collab_email = req.body.collab_email;
-          console.log(list, list.update)
            if (draft === 'final') {
+            // JY
+            // If list creator submits edited collab list then draft
+            // will be marked final on client this will remove the draft ID
+            // and set it as submitted.
+            // _removeCollabList will then delete the collab's copy of the list
             list.draft = null;
             list.submitted = true;
             list.save(function(err){
@@ -89,22 +97,22 @@ module.exports = {
             });
             res.json(list)
           } else if (updatedItems && draft) {
-            // if (draft === 'final') {
-            //   list.draft = null;
-            //   list.submitted = true;
-            //   list.save();
-            //   _removeCollabList(list.draftObj)
-            // }
+            // JY
+            // If list is updated and draft ID still exists, then the list
+            // will be saved.
             list.items = updatedItems;
             list.save();
             res.json(list)
           } else if (list.collab_email) {
+            // JY
+            // When user updates their list with a collab_email attached
+            // the list will be copied and saved under collab's ID
+            // Validates if email is in system
+            // TODO: Add an error on client if email is not in system
             User.find({"email": list.collab_email}, function(err, user){
               if (user.length === 0) {
                 res.json('user does not exist')
               } else {
-                // if collab email exists in system then save this list as valid and return user info
-                // list.save();
                 var cb = function() {
                   var listCopy = list;
                   listCopy._id = ObjectId();
