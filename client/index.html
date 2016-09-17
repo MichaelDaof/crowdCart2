@@ -14,18 +14,22 @@
 </head>
 
 <body ng-controller="AppController">
+  <div class="bg" ng-class="{
+    'fadeaway': !hasSession
+  }"></div>
   <div class="top-nav">
     <div class="top-logo">
       <img src="assets/crowdcartlogov2.png" />
+      <span class="logo-bg"></span>
     </div>
-    <div class="top-nav-left hidden" ng-class="{
+    <div class="top-nav-left hide" ng-class="{
       'show': hasSession
     }">
       <span><a href='#/mylists' class="btn btn-primary btn-lg active top-nav-button">My Lists</a></span>
       <span><a href='#/alllists' class="btn btn-primary btn-lg active top-nav-button">All Lists</a></span>
       <span><a href='#/myjobs' class="btn btn-primary btn-lg active top-nav-button">My Jobs</a></span>
     </div>
-    <div class="top-nav-right hidden" ng-class="{
+    <div class="top-nav-right hide" ng-class="{
       'show': hasSession
     }">
       <span><a ng-click="signout()" href='#/logout' class="btn pull-right btn-primary btn-default active">Log Out</a></span>
@@ -33,11 +37,12 @@
       <span><a href='#/validation' class="btn pull-right btn-primary btn-default active">Validate</a></span>
     </div>
   </div>
-  <div class="jumbotron" ng-if="!hasSession">
+
+  <!-- <div class="jumbotron" ng-if="!hasSession">
     <h1 class="display-3 text-center font--heading">CrowdCart</h1>
     <p class="lead text-center">Grocery List? Chuck it to the crowd. Crowdsourcing at its finest.</p>
-    <!-- <hr class="m-y-2"> -->
-    <!-- <p class="lead">
+    <hr class="m-y-2">
+    <p class="lead">
       <div class="delivery-address">
         <uib-accordion>
           <div uib-accordion-group class="panel-default" is-open="status.open">
@@ -53,11 +58,10 @@
           </div>
         </uib-accordion>
       </div>
-    </p> -->
-  </div>
+    </p>
+  </div> -->
 
   <div ng-view></div>
-
   <!-- angular vs 1.5.8; need to match routes -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
   <!-- load ui bootstraop below agular lib to prevent errors -->

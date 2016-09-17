@@ -1,14 +1,16 @@
 <!-- sign in page/box -->
-
-<div class="signin-outer">
+<div class="frontCopy">
+  <p class="lead text-center">Grocery List? Chuck it to the crowd.</p>
+  <p class="lead text-center"> Crowdsourcing at its finest.</p>
+</div>
+<div class="signin-outer flexColumn">
   <div class="signin-inner">
+    <p class="lead">Sign in</p>
     <form name="signin-form" ng-submit="signin()">
-      <div class="signin-field"><input type="email" ng-model="user.email" placeholder="Email"></div>
-      <div class="signin-field"><input type="password" ng-model="user.password" placeholder="Password"></div>
+      <div class="signin-field"><input class="field--signup" type="email" ng-model="user.email" placeholder="Email"></div>
+      <div class="signin-field"><input class="field--signup" type="password" ng-model="user.password" placeholder="Password"></div>
       <button class="btn btn-success">Sign In</button>
     </form>
-    <div>
-    <a href="#/signup" style="color: white">Don't have an account? <strong>Signup</strong>...</a>
-    </div>
+    <p class="lead">Or<br><a href="#/signup" class="lead"><strong>Sign up</strong>...</a></p>
   </div>
 </div>

@@ -1,13 +1,31 @@
 html {
-  background-image: url(assets/crowdcartbgi.jpg);
+/*  background-image: url(assets/cartwhite.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom;*/
 }
 
 
 body {
-  margin-left: 17%;
-  margin-right: 17%;
+/*  margin-left: 17%;
+  margin-right: 17%;*/
   margin-top: 1%;
   opacity: 0.95;
+  background-color: transparent;
+
+}
+
+body .bg {
+  overflow: hidden;
+  position: fixed;
+  transform: translateY(50%);
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background-image: url(assets/cartwhite.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom;
 }
 
 .font--heading, h1 {
@@ -42,9 +60,17 @@ body {
 }
 
 .signup-outer, .signin-outer {
-  background-color: steelblue;
+  /*background-color: steelblue;*/
   padding: 20px;
   text-align: center;
+}
+
+.signin-inner {
+  background-color: ghostwhite;
+  padding: 10px;
+  border-radius: 10px;
+  position: absolute;
+  right: 50px;
 }
 
 .signup-field, .signin-field {
@@ -66,15 +92,57 @@ body {
 
 /*CUSTOM CSS*/
 
-.hidden {
-  visibility: hidden;
+.flexColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hide {
+  visibility: visible;
 }
 
 .show {
   visibility: initial;
 }
 
+/*CUSTOM DEFAULT BOOSTRAP CSS*/
+
+
+.fadeaway {
+  animation: slidein .3s ease-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes slidein {
+  0% {
+    transform: translateY(50%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(50%);
+  }
+}
+
+.jumbotron {
+  margin-bottom: 0px;
+}
+
+/***************/
 /*mylists.html*/
+
+.mylist, .all-lists, .jobs {
+  margin-left: 17%;
+  margin-right: 17%;
+}
 
 .collabForm {
   position: absolute;
@@ -89,4 +157,50 @@ body {
   position: absolute;
   margin-left: 10px;
   font-size: .8em;
+}
+
+/***************/
+/*signin.html*/
+
+.frontCopy {
+  position: absolute;
+  margin-top: 10%;
+  width: 100%;
+}
+
+.frontCopy p {
+  font-size: 2em;
+}
+
+.field--signup {
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+@media (max-width: 760px) and (orientation: portrait) {
+  .top-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1;
+    width: 150px;
+  }
+
+  .logo-bg {
+    background-color: white;
+    height: 50px;
+    width: inherit;
+    z-index: -1;
+    position: absolute;
+    border-radius: 10px;
+    opacity: .5;
+  }
+
+  body {
+    background-color: transparent;
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
