@@ -66,3 +66,9 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+.collabLabel {
+  position: absolute;
+  margin-left: 10px;
+  font-size: .8em;
+}

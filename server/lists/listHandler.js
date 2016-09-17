@@ -53,10 +53,7 @@ module.exports = {
     var name = req.body.name;
     var updatedItems = req.body.items;
     console.log(req.body)
-    var draftId = req.body.draft;
-    if (draftId && draftId !== id) {
-      id = draftId;
-    }
+    var draftObj = req.body.draftObj;
 
     // var conditions = {'creator_id': id, 'due_at': due_at, 'name': name, 'deliverer_id': ''};
     // var update = {'deliverer_id': req.body.deliverer_id};
@@ -71,7 +68,7 @@ module.exports = {
           list.deliverer_id = req.body.deliverer_id;
           list.collab_email = req.body.collab_email;
           console.log(list, list.update)
-          if (updatedItems && draftId) {
+          if (updatedItems && draftObj) {
             list.items = updatedItems;
             list.save();
             res.json(list)

@@ -113,6 +113,10 @@ angular.module("crowdcart.lists", ["angularMoment"])
   $scope.addItemToList = function(item) {
     $scope.displayList.update = true;
     console.log($scope.displayList)
+    if ($scope.displayList.creator_id !== $scope.userid) {
+      item.collab = $scope.displayList.collab_email;
+    }
+    console.log(item)
     $scope.displayList.items.push(item)
     Lists.updateList($scope.displayList)
       .then(function(res) {

@@ -36,7 +36,7 @@
             <tr ng-repeat="item in displayList.items">
               <td>{{ item.item_name }}</td>
               <td>{{ item.quantity }}</td>
-              <td>{{ item.unite_price }}</td>
+              <td>{{ item.unite_price }}<span ng-if="item.collab" class="collabLabel"> - added by {{item.collab}}</span></td>
             </tr>
           </tbody>
         </table>
