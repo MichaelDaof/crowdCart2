@@ -8,18 +8,30 @@
           <th>List Name</th>
           <th>Location</th>
           <th>Due</th>
+          <th>Collaborator</th>
           <th></th>
           <th>Status</th>
         </tr>
       </thead>
       <tbody>
-        <tr class="list" ng-repeat="list in data.lists | orderBy:'due_at' | filter:search">
+        <tr class="list" ng-repeat="list in data.lists track by list._id | orderBy:'due_at' | filter:search">
           <td ng-click="displayDetail(this.list._id)">{{ list.name }}</td>
           <td ng-click="displayDetail(this.list._id)">{{ list.delivery_address.city }}, {{ list.delivery_address.state }}</td>
           <td ng-click="displayDetail(this.list._id)"><span am-time-ago="list.due_at"></span></td>
+          <td ng-init="list.showCollabForm = false" class="center-block">
+            <span ng-if="list.collab_email">{{list.collab_email}}</span>
+            <a ng-click="list.showCollabForm = list._id" ng-if="!list.collab_email" class="btn btn-primary btn-sm active">Add Collaborator</a>
+            <div ng-show="list.showCollabForm === list._id" class="collabForm">
+              <input ng-model="list.collab_email" placeholder="Enter email address"/>
+              <a ng-click="addCollabToList(list);" class="btn btn-primary btn-sm active">Add</a>
+              <a ng-click="list.showCollabForm = false" class="btn btn-warning btn-sm active">Cancel</a>
+
+            </div>
+          </td>
           <td><a ng-click="deleteList(this.list._id, $index)" class="btn btn-primary btn-sm active">Delete List</a></td>
-          <td ng-if="!list.deliverer_id">Open</td>
-          <td ng-if="!!list.deliverer_id">In Work!</td>
+          <td ng-if="list.draft"><a ng-click="displayDetail(list.draftObj)" class="btn btn-primary btn-sm active">Edit Draft</a></td>
+          <td ng-if="!list.deliverer_id && !list.draft">Open</td>
+          <td ng-if="!!list.deliverer_id && !!list.draft">In Work!</td>
         </tr>
       </tbody>
     </table>

@@ -11,7 +11,10 @@ var ListSchema = new mongoose.Schema({
   expired_at: Date,
   creator_id: String,
   deliverer_id: String,
-
+  collab_email: String,
+  draft: String,
+  draftObj: String,
+  submitted: Boolean,
   //items is a array containing all list items
   //Each item should be follow this structure:
   // {
