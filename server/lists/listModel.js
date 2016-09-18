@@ -6,6 +6,8 @@ var ListSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
+  // accepts "open", "accepted", "completed"
+  status: {type: String, default: "open"},
   delivered_at: Date,
   due_at: Date,
   expired_at: Date,
