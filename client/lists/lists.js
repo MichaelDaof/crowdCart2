@@ -104,7 +104,7 @@ angular.module("crowdcart.lists", ["angularMoment"])
   $scope.addJob = function(list) {
 
     list.deliverer_id = $scope.userid;
-    list.status = "accepted"
+    list.status = "accepted";
 
     // Update DB list with new deliverer_id
     Lists.updateList(list)
