@@ -3,7 +3,7 @@
 
   <div ng-click="getAllUsers()" class="btn pull-right btn-primary btn-default active">All Users</div>
   <div ng-click="getAllLists()" class="btn pull-right btn-primary btn-default active">All Lists</div>
-  <div ng-click="displayAnalytics()" class="btn pull-right btn-primary btn-default active">Analytics</div>
+  <div ng-click="displayAnalytics()" class="btn pull-right btn-primary btn-default active">Dashboard</div>
 
   <div ng-show="showAllUsers" ng-repeat = "user in data.users" >
     <h3>{{"Username: "+user.username}}</h3>
@@ -18,12 +18,12 @@
   <div ng-show="showAllLists" ng-repeat = "list in data.lists" >
     <h3>{{"List name: "+list.name}}</h3>
     <p>{{"List offer price: "+list.offer_price}}</p>
-
     <p>ITEMS:</p>
     <p>{{list.items}}</p>
-
     <p>{{"Delivery address: "+list.delivery_address.street+", "+list.delivery_address.city+", "+list.delivery_address.state}}</p>
     <p>{{"Created at: "+list.created_at}}</p>
   </div>
+
+  <div ng-show="showDashboard">Dashboard</div>
 
 </div>
