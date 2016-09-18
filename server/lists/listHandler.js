@@ -5,6 +5,8 @@ var List = require('./listModel.js');
 var ObjectId = require('mongodb').ObjectId;
 var mongoose = require('mongoose');
 
+var transHandler = require('../trans/transHandler.js');
+
   // copies list into collaborator's account
   // finds the collab user's account to grab their info
   // TODO: refactor since some unneeded data might be saved here
@@ -199,7 +201,7 @@ module.exports = {
       });
   },
 
-  // updateJobStatus method (corrected version)
+  // for completed jobs -md
   updateJobStatus: function(req, res){
     var list = req.body;
     List.findById(list._id)
@@ -210,8 +212,7 @@ module.exports = {
         } else {
           doc.status = list.status;
           doc.save(function (err, doc){
-
-            console.log("Successfully updated list status: ", doc)
+            transHandler.p2pTrans(req, res, doc)
           })
         }
       })

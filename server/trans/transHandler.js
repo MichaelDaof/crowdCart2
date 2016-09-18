@@ -71,5 +71,20 @@ module.exports = {
     //   createStripeAccount >
     //   updateUserStripeId :: res.end()
     createStripeCustomer(req, res, req.body.userid, req.body.token)
+  },
+  // used with listHandler.updateJobStatus
+  p2pTrans: function (req, res, doc) {
+    // do db user for stripe info
+    // these are test ids
+    var customer = "cus_9DNMzlMoAcF5AV";
+    var account = "acct_18upsPFBcFmzr9Cl";
+    // synchronous call
+    stripe.charges.create({
+      amount: 1000,
+      currency: 'usd',
+      source: customer,
+      destination: account
+    });
+    console.log("Successfully called p2p: ", doc)
   }
 }
