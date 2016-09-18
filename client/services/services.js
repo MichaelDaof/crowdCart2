@@ -4,8 +4,8 @@ angular.module("crowdcart.services",[])
 
 
 
-.factory("Admin", function($http) {
-
+.factory("Admin", function($http, $q) {
+  var def = $q.defer();
   var getAllUsers = function() {
 
       return $http({
@@ -13,8 +13,7 @@ angular.module("crowdcart.services",[])
         url: "/api/users"
       })
       .then(function(res){
-        console.log("here's the user data I found: "+ res.data)
-        return res.data;
+        return res.data
     });
   };
 
@@ -24,7 +23,6 @@ angular.module("crowdcart.services",[])
         url: "/api/lists"
       })
       .then(function(res){
-        console.log("here's the lists data I found: "+res.data)
         return res.data;
     });
 

@@ -16,6 +16,7 @@
 </head>
 
 <body ng-controller="AppController">
+
   <div class="bg" ng-class="{
     'fadeaway': !hasSession}">
   </div>
@@ -31,6 +32,7 @@
       fjs.parentNode.insertBefore(js, fjs);
     } (document, 'script', 'facebook-jssdk'));
   </script>
+
   <div class="top-nav">
     <a href="/" style="text-decoration: none">
       <div class="top-logo" >
@@ -62,6 +64,7 @@
     <p class="lead text-center">Grocery List? Chuck it to the crowd. Crowdsourcing at its finest.</p>
 =======
   <div class="jumbotron" ng-if="!hasSession">
+
 
     <h1 class="display-3">CrowdCart</h1>
     <p class="lead">Grocery List? Chuck it to the crowd. Crowdsourcing at its finest.</p>
