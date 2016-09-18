@@ -1,5 +1,5 @@
 var helper = require('../config/helpers.js');
-var stripe = require('stripe')("sk_test_z2eawxhaVFZUJmYFVSiDseKm");
+var stripe = require('stripe')("sk_test_1r3gT6ho7rW8BEEC9KIBQhrS");
 var User = require('../users/userModel.js');
 
 var updateUserStripeId = function (req, res, userid, type, stripeId, cb){
@@ -76,15 +76,22 @@ module.exports = {
   p2pTrans: function (req, res, doc) {
     // do db user for stripe info
     // these are test ids
-    var customer = "cus_9DNMzlMoAcF5AV";
-    var account = "acct_18upsPFBcFmzr9Cl";
+    var customer = "cus_9DTjab5y2ubbMn";
+    var account = "acct_18v2JfA3WfitC9Bp";
     // synchronous call
     stripe.charges.create({
       amount: 1000,
       currency: 'usd',
-      source: customer,
+      customer: customer,
       destination: account
     });
+    // stripe.customers.list(
+    //   { limit: 3 },
+    //   function(err, customers) {
+    //     // asynchronously called
+    //     console.log("p2p: ", customers)
+    //   }
+    // );
     console.log("Successfully called p2p: ", doc)
   }
 }
