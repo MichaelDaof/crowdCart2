@@ -6,6 +6,8 @@ var ListSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
+  // accepts "open", "accepted" and "completed"
+  status: { type: String, default: "open"},
   delivered_at: Date,
   due_at: Date,
   expired_at: Date,
@@ -26,7 +28,6 @@ var ListSchema = new mongoose.Schema({
   items : [],
   total_price: Number,
   offer_price: Number,
-  status: String,
 
   //If delivery address is different from list creator's address
   delivery_address: {

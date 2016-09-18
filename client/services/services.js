@@ -208,19 +208,19 @@ angular.module("crowdcart.services",[])
     });
   };
 
-  // maybe mvp
-  var deleteJob = function (list) {
+  // updates db, initiaties server-side stripe P2P
+  var completeJob = function (list) {
     return $http({
-      method: "DELETE",
+      method: "POST",
       url: "/api/jobs",
-      data: list /*id*/
+      data: list
     });
   };
 
   return {
     getJobs: getJobs,
     updateJobStatus: updateJobStatus,
-    deleteJob: deleteJob
+    completeJob: completeJob
   };
 
 })

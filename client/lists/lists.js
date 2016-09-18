@@ -45,7 +45,7 @@ angular.module("crowdcart.lists", ["angularMoment"])
           //JY
           // TODO: Add date verification if user puts nothing for date
           // Currently old line has been commented out above.
-          return !list.deliverer_id && list.creator_id !== $scope.userid
+          return list.status !== "open"
         });
       })
       .catch(function(error){

@@ -61,7 +61,9 @@ module.exports = {
     });
   },
 
-   // updateList method
+   // Previously used for completing jobs. Job completion has been refactored to
+   // completeJob
+   // Now being used for list collaboration
   updateList: function(req, res){
     var id = req.body.creator_id;
     var due_at = req.body.due_at;
@@ -199,7 +201,20 @@ module.exports = {
 
   // updateJobStatus method (corrected version)
   updateJobStatus: function(req, res){
-    // TODO: Fill Out
+    var list = req.body;
+    List.findById(list._id)
+      .exec(function (err, doc){
+        if (err){
+          console.log("Failed to find document during job completion update: ", err);
+          helper.sendError(err, req, res)
+        } else {
+          doc.status = list.status;
+          doc.save(function (err, doc){
+
+            console.log("Successfully updated list status: ", doc)
+          })
+        }
+      })
   },
 
   // updateStatus method

@@ -1,6 +1,6 @@
 angular.module("crowdcart.jobs", [])
 
-.controller("JobsController", function ($scope, Jobs, Lists, $window, $location) {
+.controller("JobsController", function ($scope, Jobs, $window, $location) {
 
   $scope.data = {};
 
@@ -28,23 +28,27 @@ angular.module("crowdcart.jobs", [])
   //refresh the page to reflect the change,
   //redirect to all lists page when there is no job left
 
-  $scope.deleteJob = function(list) {
-    list.deliverer_id = '';
-    Lists.updateList(list)
-      .then(function () {
-        //console.log('delete job redi', $scope.data.jobs.length);
-        $scope.getJobs();
-         if ($scope.data.jobs.length === 1) {
-            $location.path('/alllists');
-         }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+  // $scope.deleteJob = function(list) {
+  //   list.deliverer_id = '';
+  //   Lists.updateList(list)
+  //     .then(function () {
+  //       //console.log('delete job redi', $scope.data.jobs.length);
+  //       $scope.getJobs();
+  //        if ($scope.data.jobs.length === 1) {
+  //           $location.path('/alllists');
+  //        }
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // }
+
+  $scope.completeJob = function (listItem){
+    listItem.status = "completed";
+    Jobs.completeJob(listItem)
   }
 
   // Initialize Get Jobs Once
   $scope.getJobs();
 
   });
-
