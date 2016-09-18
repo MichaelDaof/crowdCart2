@@ -10,7 +10,11 @@ angular.module("crowdcart.jobs", [])
   $scope.getJobs = function() {
     Jobs.getJobs($scope.userid)
       .then(function(jobs){
-        $scope.data.jobs = jobs;
+        var uncompletedJobs = jobs.filter(function (job){
+          return job.status !== "completed"
+        })
+        console.log("Uncompleted JObs: ", uncompletedJobs, jobs)
+        $scope.data.jobs = uncompletedJobs;
       })
       .catch(function(error){
         console.log('ERROR: ', error);
@@ -29,7 +33,8 @@ angular.module("crowdcart.jobs", [])
   //redirect to all lists page when there is no job left
 
   $scope.deleteJob = function(list) {
-    list.deliverer_id = '';
+    // list.deliverer_id = '';
+    list.status = "completed";
     Lists.updateList(list)
       .then(function () {
         //console.log('delete job redi', $scope.data.jobs.length);
@@ -47,4 +52,3 @@ angular.module("crowdcart.jobs", [])
   $scope.getJobs();
 
   });
-

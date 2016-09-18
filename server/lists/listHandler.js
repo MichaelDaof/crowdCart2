@@ -83,6 +83,7 @@ module.exports = {
             console.error(err);
           }
           list.deliverer_id = req.body.deliverer_id;
+          list.status = req.body.status;
           list.collab_email = req.body.collab_email;
            if (draft === 'final') {
             // JY
