@@ -24,6 +24,11 @@
     <p>{{"Created at: "+list.created_at}}</p>
   </div>
 
-  <div ng-show="showDashboard">Dashboard</div>
+  <div ng-show="showDashboard">
+    <h2>Dashboard</h2>
+    <h3>{{"Total users: "+ dashboardData.totalNumberOfUsers}}</h3>
+    <h3>{{"Total lists: "+ dashboardData.totalNumberOfLists}}</h3>
+    <h3>{{"Total warnings: "+ dashboardData.numberOfWarnings}}</h3>
+  </div>
 
 </div>

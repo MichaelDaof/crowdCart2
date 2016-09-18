@@ -3,12 +3,13 @@ angular.module("crowdcart.admin", ["crowdcart.services"])
 .controller("AdminController", function ($scope, $window, $location, Admin ) {
 
     $scope.data = {};
+    $scope.dashboardData = {};
     $scope.showAllUsers = false;
     $scope.showAllLists = false;
-    $scope.showDashbaord = false;
+    $scope.showDashboard = false;
 
     $scope.getAllUsers = function(){
-      $scope.showDashbaord = false;
+      $scope.showDashboard = false;
       $scope.showAllLists = false;
       $scope.showAllUsers = true;
       Admin.getAllUsers().then(function(res){
@@ -17,7 +18,7 @@ angular.module("crowdcart.admin", ["crowdcart.services"])
     }
 
     $scope.getAllLists = function(){
-      $scope.showDashbaord = false;
+      $scope.showDashboard = false;
       $scope.showAllUsers = false;
       $scope.showAllLists = true;
       Admin.getAllLists().then(function(res){
@@ -25,13 +26,27 @@ angular.module("crowdcart.admin", ["crowdcart.services"])
       })
     }
 
+
     $scope.displayAnalytics = function(){
       $scope.showAllUsers = false;
       $scope.showAllLists = false;
-      $scope.showDashbaord = true;
-      //get total number of users, set to $scope.data.totalUsers
-      //get total number of lists, set to $scope.data.totalLists
-      //get total number of warnings, set to $scope.data.totalWarnings
+      $scope.showDashboard = true;
+
+      Admin.getAllUsers().then(function(res){
+        console.log(res);
+        $scope.dashboardData.numberOfWarnings = 0;
+        $scope.dashboardData.totalNumberOfUsers = res.length;
+
+        for (var i = 0; i < res.length; i++){
+          if (res[i].warning = true){
+            $scope.dashboardData.numberOfWarnings++;
+          }
+        }
+      })
+
+      Admin.getAllLists().then(function(res){
+        $scope.dashboardData.totalNumberOfLists = res.length;
+      })
     }
 
   });
