@@ -99,6 +99,7 @@ module.exports = {
             // and set it as submitted.
             // _removeCollabList will then delete the collab's copy of the list
             list.draft = null;
+            list.status = 'open';
             list.submitted = true;
             list.save(function(err){
               _removeCollabList(list.draftObj)
