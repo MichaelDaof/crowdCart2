@@ -22,6 +22,7 @@ angular.module("crowdcart.lists", ["angularMoment"])
       // get list data and store on scope
       Lists.getOneList($routeParams.listid)
         .then(function (list) {
+          console.log('curr list', list)
           $scope.displayList = list
         })
     }
@@ -45,7 +46,8 @@ angular.module("crowdcart.lists", ["angularMoment"])
           //JY
           // TODO: Add date verification if user puts nothing for date
           // Currently old line has been commented out above.
-          return list.status === "open" && list.creator_id !== $scope.userid
+          // Added !list.draft to hide active lists with a collaborator
+          return list.status === "open" && list.creator_id !== $scope.userid && !list.draft
         });
       })
       .catch(function(error){
@@ -138,6 +140,7 @@ angular.module("crowdcart.lists", ["angularMoment"])
 
   //Add a collaborator to the list
   $scope.addCollabToList = function(list) {
+    console.log('called')
     list.showCollabForm = null;
     Lists.updateList(list)
       .then(function(res) {
