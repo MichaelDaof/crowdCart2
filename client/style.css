@@ -59,6 +59,14 @@ body .bg {
   display: inline-flex;
 }
 
+.top-nav-right {
+  padding-left: 10px;
+}
+
+.btn-pad {
+  margin-bottom: 3px;
+}
+
 .signup-outer, .signin-outer {
   /*background-color: steelblue;*/
   padding: 20px;
@@ -209,6 +217,20 @@ body .bg {
     margin-left: 0;
     margin-right: 0;
   }
+
+  .mylist, .alllists, .myjobs{
+    margin-left: 3%;
+    margin-right: 3%;
+  }
+
+  .top-nav-left {
+    display: inline-flex!important;
+  }
+
+  .btn-pad {
+    padding: 3px;
+    width: 95%;
+  }
 }
 
 /* WebKit and Opera browsers */
@@ -255,3 +277,4 @@ body .bg {
   -ms-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
+
