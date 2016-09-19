@@ -4,6 +4,7 @@ var User = require('../users/userModel.js');
 var List = require('./listModel.js');
 var ObjectId = require('mongodb').ObjectId;
 var mongoose = require('mongoose');
+var transHandler = require('../trans/transHandler.js');
 
   // copies list into collaborator's account
   // finds the collab user's account to grab their info
@@ -63,29 +64,35 @@ module.exports = {
 
    // updateList method
   updateList: function(req, res){
-    var id = req.body.creator_id;
-    var due_at = req.body.due_at;
-    var name = req.body.name;
     // updatedItems are for new collab items added in draft mode
     // draftObj is the mongo ID for the original list
     // draft is the original creator's ID
     var updatedItems = req.body.items;
     var draftObj = req.body.draftObj;
     var draft = req.body.draft;
-    // var conditions = {'creator_id': id, 'due_at': due_at, 'name': name, 'deliverer_id': ''};
-    // var update = {'deliverer_id': req.body.deliverer_id};
 
-    // List.update(conditions, update)
-
-    List.findOne({'creator_id': id, 'due_at': due_at, 'name': name}, function(err, list){
+    List.findById(req.body._id, function(err, list){
           if (err) {
-            console.log('List Findone ERROR ****** ');
-            console.error(err);
+            console.error("Failed to find list in db during update: ", err);
           }
-          list.deliverer_id = req.body.deliverer_id;
           list.status = req.body.status;
-          list.collab_email = req.body.collab_email;
-           if (draft === 'final') {
+
+          if (list.status === "accepted"){
+            list.deliverer_id = req.body.deliverer_id;
+            list.save(function (err, doc){
+              res.end()
+            })
+          }
+
+          //////// BEGIN P2P TRANSACTION ////////////////////////
+          if (list.status === "completed") {
+            transHandler.p2pTrx(req, res, list);
+          }
+          //////// END P2P TRANSACTION ////////////////////////
+
+          //////// COLLAB FEATURE ///////////////////////////////
+          if (draft === 'final') {
+            list.collab_email = req.body.collab_email;
             // JY
             // If list creator submits edited collab list then draft
             // will be marked final on client this will remove the draft ID
@@ -126,10 +133,8 @@ module.exports = {
                 res.json(list);
               }
             })
-          } else {
-            list.save();
-            res.json(list);
           }
+          /////// COLLAB FEATURE END ///////////////////////////
         }.bind(this)
     );
 

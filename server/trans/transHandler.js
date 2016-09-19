@@ -1,5 +1,5 @@
 var helper = require('../config/helpers.js');
-var stripe = require('stripe')("sk_test_z2eawxhaVFZUJmYFVSiDseKm");
+var stripe = require('stripe')("sk_test_1r3gT6ho7rW8BEEC9KIBQhrS");
 var User = require('../users/userModel.js');
 
 var updateUserStripeId = function (req, res, userid, type, stripeId, cb){
@@ -71,5 +71,55 @@ module.exports = {
     //   createStripeAccount >
     //   updateUserStripeId :: res.end()
     createStripeCustomer(req, res, req.body.userid, req.body.token)
+  },
+
+  p2pTrx: function (req, res, list){
+    var amount = list.offer_price;
+
+    User.findById(list.deliverer_id)
+      .then(function (payee){
+
+        User.findById(list.creator_id)
+          .then(function (payor){
+            // Stripe claims charges are synchronous calls. Can't use "then".
+            stripe.charges.create({
+              amount: amount,
+              currency: 'usd',
+              customer: payor.stripe.customer,
+              destination: payee.stripe.account
+            },
+            function (err, charge){
+              if (err){
+                console.error("P2P Stripe charge failed: ", err)
+                helper.sendError(err, req, res)
+              } else {
+                // Dummy bank for API dev pirposes
+                payee.credit += amount;
+                payee.save()
+                  .then(function (doc){
+                    // Saves status update to "complete"
+                    console.log("payee after charge: ", doc)
+                    list.save()
+                      .catch(function (err){
+                        console.error("Failed to update list status to 'complete' after charge. Charge: ", charge, "Error: ", err);
+                        helper.sendError(err, req, res);
+                      })
+                  })
+                  .catch(function (err){
+                    console.error("Failed to credit payee after charge. Charge: ", charge, "Error: ", err);
+                    helper.sendError(err, req, res);
+                  })
+              } // else
+            }) // charge cb
+          })
+          .catch(function (err){
+            console.error("Failed to find payee during transaction. Charge cancelled.");
+            helper.sendError(err, req, res);
+          })
+      })
+      .catch(function(err){
+        console.error("Failed to find payee during transaction. Charge cancelled.");
+        helper.sendError(err, req, res);
+      })
   }
 }

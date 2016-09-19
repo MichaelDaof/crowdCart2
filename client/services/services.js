@@ -131,7 +131,7 @@ angular.module("crowdcart.services",[])
       url: "/api/crowd"
     })
     .then(function(res){
-      // console.log('ALL LISTS: ', res.data);
+      // console.log(': ', res.data);
       return res.data;
     });
   };
