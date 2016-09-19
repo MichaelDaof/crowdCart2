@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
+    "bluebird": "^3.4.6",
     "body-parser": "^1.4.3",
     "browser-sync": "^1.5.7",
     "chai": "^3.4.1",

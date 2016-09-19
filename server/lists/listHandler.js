@@ -75,10 +75,10 @@ module.exports = {
           if (err) {
             console.error("Failed to find list in db during update: ", err);
           }
-          list.deliverer_id = req.body.deliverer_id;
           list.status = req.body.status;
 
           if (list.status === "accepted"){
+            list.deliverer_id = req.body.deliverer_id;
             list.save(function (err, doc){
               res.end()
             })
@@ -86,7 +86,7 @@ module.exports = {
 
           //////// BEGIN P2P TRANSACTION ////////////////////////
           if (list.status === "completed") {
-            transHandler.p2pTrx(list, req, res);
+            transHandler.p2pTrx(req, res, list);
           }
           //////// END P2P TRANSACTION ////////////////////////
 

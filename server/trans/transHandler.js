@@ -72,16 +72,53 @@ module.exports = {
     //   updateUserStripeId :: res.end()
     createStripeCustomer(req, res, req.body.userid, req.body.token)
   },
-  p2pTrx: function (list, req, res){
-    // stripe.charges are synchronous calls
-    stripe.charges.create({
-      amount: 1000,
-      currency: 'usd',
-      customer: "cus_9DiVrzmpsM4dD1",
-      destination: "acct_18vH44Jk2aQs4ejW"
-    });
-    list.save(function (err, doc){
-      res.end();
-    });
+
+  p2pTrx: function (req, res, list){
+    var amount = list.offer_price;
+
+    User.findById(list.deliverer_id)
+      .then(function (payee){
+
+        User.findById(list.creator_id)
+          .then(function (payor){
+            // Stripe claims charges are synchronous calls. Can't use "then".
+            stripe.charges.create({
+              amount: amount,
+              currency: 'usd',
+              customer: payor.stripe.customer,
+              destination: payee.stripe.account
+            },
+            function (err, charge){
+              if (err){
+                console.error("P2P Stripe charge failed: ", err)
+                helper.sendError(err, req, res)
+              } else {
+                payee.credit += amount;
+                payee.save()
+                  .then(function (doc){
+                    // Saves status update to "complete"
+                    console.log("payee after charge: ", doc)
+                    list.save()
+                      .catch(function (err){
+                        console.error("Failed to update list status to 'complete' after charge. Charge: ", charge, "Error: ", err);
+                        helper.sendError(err, req, res);
+                      })
+                  })
+                  .catch(function (err){
+                    console.error("Failed to credit payee after charge. Charge: ", charge, "Error: ", err);
+                    helper.sendError(err, req, res);
+                  })
+              } // else
+            }) // charge cb
+          })
+          .catch(function (err){
+            console.error("Failed to find payee during transaction. Charge cancelled.");
+            helper.sendError(err, req, res);
+          })
+      })
+      .catch(function(err){
+        console.error("Failed to find payee during transaction. Charge cancelled.");
+        helper.sendError(err, req, res);
+      })
   }
 }

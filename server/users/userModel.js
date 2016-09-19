@@ -1,4 +1,5 @@
-var mongoose = require('mongoose');
+var Promise = require('bluebird')
+var mongoose = Promise.promisifyAll(require('mongoose'));
 var bcrypt = require('bcrypt-nodejs');
 
 var UserSchema = new mongoose.Schema({
@@ -22,7 +23,9 @@ var UserSchema = new mongoose.Schema({
     verified: { type: Boolean, default: false },
     customer: String,
     account: String
-  }
+  },
+  // This is not bank, it is a reflection of another source.
+  credit: {type: Number, default: 0}
 });
 
 UserSchema.methods.comparePasswords = function(enteredPassword, callback) {
