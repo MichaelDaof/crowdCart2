@@ -119,6 +119,6 @@
         </tbody>
       </table>
     <a ng-click="addList()" class="btn btn-primary btn-sm active">Submit List</a>
-    <a ng-click="goToFinancial()" class="btn btn-success active">Enter Your Payment Method</a>
+    <a ng-click="goToFinancial()" class="btn btn-success active" ng-if="!stripeVerified">Enter Your Payment Method</a>
   </form>
 </div>

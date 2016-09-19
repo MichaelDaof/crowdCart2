@@ -244,6 +244,7 @@ angular.module("crowdcart.services",[])
         data: JSON.stringify(userWithToken)
       }).then(function (payload){
         console.log("Reroute after payment update")
+        $rootScope.stripeVerified = true;
         $location.path('/mylists')
       })
     }
