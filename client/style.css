@@ -70,6 +70,10 @@ body .bg {
   margin-bottom: 5px;
 }
 
+.half-width {
+  width: 50%;
+}
+
 .btn-pad {
   font-size: 14px;
   width: 95%;
