@@ -28,16 +28,13 @@ angular.module("crowdcart.jobs", [])
     $location.path("/listdetail/" + listid)
   }
 
-  //Delete a job from myjobs view,
-  //refresh the page to reflect the change,
-  //redirect to all lists page when there is no job left
-
   $scope.deleteJob = function(list) {
-    // list.deliverer_id = '';
+
     list.status = "completed";
+    console.log("Completing job: ", list)
     Lists.updateList(list)
       .then(function () {
-        //console.log('delete job redi', $scope.data.jobs.length);
+
         $scope.getJobs();
          if ($scope.data.jobs.length === 1) {
             $location.path('/alllists');

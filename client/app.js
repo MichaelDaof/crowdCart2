@@ -111,6 +111,6 @@ angular.module("crowdcart", [
   });
 
   // authenticate with Stripe
-  Stripe.setPublishableKey('pk_test_R02Apjsv5QBhyFk929nSx9Lr')
+  Stripe.setPublishableKey('pk_test_SV8q41RV2asDcqQlZfdzlCQS')
 
 });

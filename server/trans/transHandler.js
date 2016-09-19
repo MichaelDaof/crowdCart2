@@ -1,5 +1,5 @@
 var helper = require('../config/helpers.js');
-var stripe = require('stripe')("sk_test_z2eawxhaVFZUJmYFVSiDseKm");
+var stripe = require('stripe')("sk_test_1r3gT6ho7rW8BEEC9KIBQhrS");
 var User = require('../users/userModel.js');
 
 var updateUserStripeId = function (req, res, userid, type, stripeId, cb){
@@ -71,5 +71,18 @@ module.exports = {
     //   createStripeAccount >
     //   updateUserStripeId :: res.end()
     createStripeCustomer(req, res, req.body.userid, req.body.token)
+  },
+  p2pTrx: function (list, req, res){
+    console.log("Successfully called p2pTrx");
+    // stripe.charges are synchronous calls
+    stripe.charges.create({
+      amount: 1000,
+      currency: 'usd',
+      customer: "cus_9DiVrzmpsM4dD1",
+      destination: "acct_18vH44Jk2aQs4ejW"
+    });
+    console.log("Successfully completed stripe charge: customer to account")
+    list.save();
+    res.end();
   }
 }

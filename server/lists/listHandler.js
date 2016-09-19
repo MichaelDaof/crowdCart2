@@ -4,6 +4,7 @@ var User = require('../users/userModel.js');
 var List = require('./listModel.js');
 var ObjectId = require('mongodb').ObjectId;
 var mongoose = require('mongoose');
+var transHandler = require('../trans/transHandler.js');
 
   // copies list into collaborator's account
   // finds the collab user's account to grab their info
@@ -72,6 +73,8 @@ module.exports = {
     var updatedItems = req.body.items;
     var draftObj = req.body.draftObj;
     var draft = req.body.draft;
+
+
     // var conditions = {'creator_id': id, 'due_at': due_at, 'name': name, 'deliverer_id': ''};
     // var update = {'deliverer_id': req.body.deliverer_id};
 
@@ -84,8 +87,23 @@ module.exports = {
           }
           list.deliverer_id = req.body.deliverer_id;
           list.status = req.body.status;
-          list.collab_email = req.body.collab_email;
-           if (draft === 'final') {
+
+          if (list.status === "accepted"){
+            list.save(function (err, doc){
+              res.end()
+            })
+          }
+
+          //////// BEGIN P2P TRANSACTION ////////////////////////
+          if (list.status === "completed") {
+            console.log("Entering P2P transaction stage: ", list)
+            transHandler.p2pTrx(list, req, res);
+          }
+          //////// END P2P TRANSACTION ////////////////////////
+
+          //////// COLLAB FEATURE ///////////////////////////////
+          if (draft === 'final') {
+            list.collab_email = req.body.collab_email;
             // JY
             // If list creator submits edited collab list then draft
             // will be marked final on client this will remove the draft ID
@@ -126,10 +144,8 @@ module.exports = {
                 res.json(list);
               }
             })
-          } else {
-            list.save();
-            res.json(list);
           }
+          /////// COLLAB FEATURE END ///////////////////////////
         }.bind(this)
     );
 
