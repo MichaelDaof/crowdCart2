@@ -98,8 +98,10 @@ module.exports = {
                 payee.save()
                   .then(function (doc){
                     // Saves status update to "complete"
-                    console.log("payee after charge: ", doc)
-                    list.save()
+                    console.log("payee after charge: ", doc);
+                    list.save(function (doc){
+                      res.end()
+                    })
                       .catch(function (err){
                         console.error("Failed to update list status to 'complete' after charge. Charge: ", charge, "Error: ", err);
                         helper.sendError(err, req, res);

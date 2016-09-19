@@ -225,7 +225,7 @@ angular.module("crowdcart.services",[])
 
 })
 
-.factory("CCAuth", function ($http, $window){
+.factory("CCAuth", function ($http, $window, $location, $rootScope){
 
   var stripeResponseHandler = function (status, response){
     if (response.error){
@@ -242,6 +242,10 @@ angular.module("crowdcart.services",[])
         method: "POST",
         url: "/api/stripe_customers",
         data: JSON.stringify(userWithToken)
+      }).then(function (payload){
+        console.log("Reroute after payment update")
+        $rootScope.stripeVerified = true;
+        $location.path('/mylists')
       })
     }
   };
