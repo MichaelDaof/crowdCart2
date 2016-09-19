@@ -1,9 +1,11 @@
 <div class="adminPanel">
   <h1>CrowdCart Admin Panel</h1>
 
-  <div ng-click="getAllUsers()" class="btn pull-right btn-primary btn-default active">All Users</div>
-  <div ng-click="getAllLists()" class="btn pull-right btn-primary btn-default active">All Lists</div>
-  <div ng-click="displayAnalytics()" class="btn pull-right btn-primary btn-default active">Dashboard</div>
+  <div class="nav-buttons-user half-width">
+  <div ng-click="getAllUsers()" class="btn btn-primary btn-default btn-pad active">All Users</div>
+  <div ng-click="getAllLists()" class="btn btn-primary btn-default btn-pad active">All Lists</div>
+  <div ng-click="displayAnalytics()" class="btn pull-right btn-primary btn-default btn-pad active">Dashboard</div>
+  </div>
 
   <div ng-show="showAllUsers" ng-repeat = "user in data.users" >
     <h3>{{"Username: "+user.username}}</h3>
