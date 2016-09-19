@@ -43,20 +43,22 @@
         <img src="assets/cart.png" />
       </div>
     </a>
-    <div class="top-nav-left hide" ng-class="{
-      'show': hasSession
-    }">
-      <span><a href='#/mylists' class="btn btn-primary btn-lg active top-nav-button">My Lists</a></span>
-      <span><a href='#/alllists' class="btn btn-primary btn-lg active top-nav-button">All Lists</a></span>
-      <span><a href='#/myjobs' class="btn btn-primary btn-lg active top-nav-button">My Jobs</a></span>
-    </div>
-    <div class="top-nav-right hide" ng-class="{
-      'show': hasSession
-    }">
-      <span><a ng-click="signout()" href='#/logout' class="btn pull-right btn-primary btn-default active">Log Out</a></span>
-      <span><a ng-click="admin()" href='#/admin' class="btn pull-right btn-primary btn-default active">Admin</a></span>
-      <span><a href='#/validation' class="btn pull-right btn-primary btn-default active">Validate</a></span>
-    </div>
+    <div>
+      <div class="top-nav-left hide" ng-class="{
+        'show': hasSession
+      }">
+        <span><a href='#/mylists' class="btn btn-primary btn-lg active top-nav-button btn-block btn-pad">My Lists</a></span>
+        <span><a href='#/alllists' class="btn btn-primary btn-lg active top-nav-button btn-block btn-pad">All Lists</a></span>
+        <span><a href='#/myjobs' class="btn btn-primary btn-lg active top-nav-button btn-block btn-pad">My Jobs</a></span>
+      </div>
+      <div class="top-nav-right hide" ng-class="{
+        'show': hasSession
+      }">
+        <span><a ng-click="signout()" href='#/logout' class="btn pull-right btn-primary btn-lg active btn-block btn-pad">Log Out</a></span>
+        <span><a ng-click="admin()" href='#/admin' class="btn pull-right btn-primary btn-lg active btn-block btn-pad">Admin</a></span>
+        <span><a href='#/validation' class="btn pull-right btn-primary btn-lg active btn-block btn-pad">Validate</a></span>
+      </div>
+    <div>
   </div>
 
   <!-- <div class="jumbotron" ng-if="!hasSession">
