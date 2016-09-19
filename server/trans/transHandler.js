@@ -93,6 +93,7 @@ module.exports = {
                 console.error("P2P Stripe charge failed: ", err)
                 helper.sendError(err, req, res)
               } else {
+                // Dummy bank for API dev pirposes
                 payee.credit += amount;
                 payee.save()
                   .then(function (doc){
