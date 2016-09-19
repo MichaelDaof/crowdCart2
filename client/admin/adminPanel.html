@@ -32,6 +32,11 @@
     <div ng-repeat = "user in dashboardData.displayedWarningUsers">
       <p>{{user}}</p>
     </div>
+    <div ng-click="showGraph()" class="btn pull-left btn-primary btn-default active">Graph lists vs time (last 24 hours)
+    </div>
+
+    <svg width="960" height="500"></svg>
+
   </div>
 
 </div>

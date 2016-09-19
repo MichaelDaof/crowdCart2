@@ -321,3 +321,20 @@ body .bg {
   -ms-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
+
+.axis {
+  font: 10px sans-serif;
+}
+
+.bar {
+  fill: steelblue;
+}
+
+.bar:hover {
+  fill: brown;
+}
+
+.axis--x path {
+  display: none;
+}
+
