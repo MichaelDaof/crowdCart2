@@ -67,10 +67,10 @@ module.exports = {
     // updatedItems are for new collab items added in draft mode
     // draftObj is the mongo ID for the original list
     // draft is the original creator's ID
+    var creator_id = req.body._id;
     var updatedItems = req.body.items;
     var draftObj = req.body.draftObj;
     var draft = req.body.draft;
-
     List.findById(req.body._id, function(err, list){
           if (err) {
             console.error("Failed to find list in db during update: ", err);
@@ -91,8 +91,8 @@ module.exports = {
           //////// END P2P TRANSACTION ////////////////////////
 
           //////// COLLAB FEATURE ///////////////////////////////
+          list.collab_email = req.body.collab_email;
           if (draft === 'final') {
-            list.collab_email = req.body.collab_email;
             // JY
             // If list creator submits edited collab list then draft
             // will be marked final on client this will remove the draft ID
@@ -128,7 +128,7 @@ module.exports = {
                   listCopy.save();
                   _copyCollabList(listCopy, user);
                 }
-                list.draft = id;
+                list.draft = creator_id;
                 list.save(cb);
                 res.json(list);
               }

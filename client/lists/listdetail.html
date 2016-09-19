@@ -20,7 +20,7 @@
 
   <div class="items">
     <uib-accordion>
-      <div uib-accordion-group class="panel-default" is-open="status.open || displayList.draft">
+      <div uib-accordion-group class="panel-default" is-open="status.open || displayList.draft || displayList.items">
         <uib-accordion-heading>
           Items <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open || displayList.draft, 'glyphicon-chevron-right': !status.open}"></i>
         </uib-accordion-heading>
@@ -45,7 +45,7 @@
             <input type="number" ng-model="item.quantity" placeholder="Quantity">
             <input type="number" ng-model="item.unite_price" placeholder="Cost per Item">
             <a ng-click="addItemToList(item); item = {}; " class="btn btn-primary btn-sm active">Save Item</a>
-            <a ng-click="submitDraft()" class="btn btn-primary btn-sm active">Submit</a>
+            <a ng-show="userid === displayList.creator_id" ng-click="submitDraft()" class="btn btn-primary btn-sm active">Submit</a>
           </form>
       </div>
     </uib-accordion>
