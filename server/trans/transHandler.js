@@ -73,7 +73,6 @@ module.exports = {
     createStripeCustomer(req, res, req.body.userid, req.body.token)
   },
   p2pTrx: function (list, req, res){
-    console.log("Successfully called p2pTrx");
     // stripe.charges are synchronous calls
     stripe.charges.create({
       amount: 1000,
@@ -81,8 +80,8 @@ module.exports = {
       customer: "cus_9DiVrzmpsM4dD1",
       destination: "acct_18vH44Jk2aQs4ejW"
     });
-    console.log("Successfully completed stripe charge: customer to account")
-    list.save();
-    res.end();
+    list.save(function (err, doc){
+      res.end();
+    });
   }
 }

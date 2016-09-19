@@ -64,9 +64,6 @@ module.exports = {
 
    // updateList method
   updateList: function(req, res){
-    var id = req.body.creator_id;
-    var due_at = req.body.due_at;
-    var name = req.body.name;
     // updatedItems are for new collab items added in draft mode
     // draftObj is the mongo ID for the original list
     // draft is the original creator's ID
@@ -74,16 +71,9 @@ module.exports = {
     var draftObj = req.body.draftObj;
     var draft = req.body.draft;
 
-
-    // var conditions = {'creator_id': id, 'due_at': due_at, 'name': name, 'deliverer_id': ''};
-    // var update = {'deliverer_id': req.body.deliverer_id};
-
-    // List.update(conditions, update)
-
-    List.findOne({'creator_id': id, 'due_at': due_at, 'name': name}, function(err, list){
+    List.findById(req.body._id, function(err, list){
           if (err) {
-            console.log('List Findone ERROR ****** ');
-            console.error(err);
+            console.error("Failed to find list in db during update: ", err);
           }
           list.deliverer_id = req.body.deliverer_id;
           list.status = req.body.status;
@@ -96,7 +86,6 @@ module.exports = {
 
           //////// BEGIN P2P TRANSACTION ////////////////////////
           if (list.status === "completed") {
-            console.log("Entering P2P transaction stage: ", list)
             transHandler.p2pTrx(list, req, res);
           }
           //////// END P2P TRANSACTION ////////////////////////
