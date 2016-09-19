@@ -59,12 +59,21 @@ body .bg {
   display: inline-flex;
 }
 
-.top-nav-right {
-  padding-left: 10px;
+.nav-buttons-wrapper {
+  display: flex;
+}
+
+.nav-buttons-user {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 5px;
 }
 
 .btn-pad {
-  margin-bottom: 3px;
+  font-size: 14px;
+  width: 95%;
+  margin-right: 5px;
 }
 
 .signup-outer, .signin-outer {
@@ -189,6 +198,50 @@ body .bg {
     background-size: contain;
   }
 
+  h3, h2 {
+    font-size: 1.2em;
+  }
+
+  table {
+    font-size: .8em;
+  }
+
+  .frontCopy, .lead {
+    margin: 0;
+  }
+
+  .frontCopy p {
+    font-size: 1em;
+  }
+
+  .top-nav {
+    flex-direction: column;
+  }
+
+  .contents-container {
+    overflow-x: auto;
+  }
+
+  .btn-pad {
+    font-size: .8em;
+  }
+
+  .nav-buttons-wrapper {
+    flex-direction: column;
+    width: 100%;
+  }
+  .nav-buttons-user {
+    /*width: 80%;*/
+  }
+  .nav-button {
+
+  }
+
+  .mylist, .all-lists, .jobs {
+    margin-left: 3%;
+    margin-right: 3%;
+  }
+
   .frontCopy, .signin-inner {
     position: initial;
   }
@@ -198,7 +251,12 @@ body .bg {
     flex-direction: column;
     align-items: center;
     z-index: 1;
-    width: 150px;
+    /*width: 80%;*/
+  }
+
+  .top-logo-wrapper {
+/*    transform: scale(0.5);*/
+    transform-origin: left;
   }
 
   .logo-bg {
@@ -216,20 +274,6 @@ body .bg {
     margin-top: 0;
     margin-left: 0;
     margin-right: 0;
-  }
-
-  .mylist, .alllists, .myjobs{
-    margin-left: 3%;
-    margin-right: 3%;
-  }
-
-  .top-nav-left {
-    display: inline-flex!important;
-  }
-
-  .btn-pad {
-    padding: 3px;
-    width: 95%;
   }
 }
 
@@ -277,4 +321,3 @@ body .bg {
   -ms-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
-

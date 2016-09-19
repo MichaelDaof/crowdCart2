@@ -34,7 +34,7 @@
   </script>
 
   <div class="top-nav">
-    <a href="/" style="text-decoration: none">
+    <a class="top-logo-wrapper" href="/" style="text-decoration: none">
       <div class="top-logo" style="display: block; min-width: 200px">
         <img src="assets/crowd.png" />
         <div id="stage" style="display: inline-block">
@@ -43,7 +43,21 @@
         <img src="assets/cart.png" />
       </div>
     </a>
-    <div>
+
+    <div class="nav-buttons-wrapper">
+      <div class="nav-buttons-user">
+        <span class="nav-button" ng-show="hasSession"><a href='#/mylists' class="btn btn-primary btn-lg active btn-block btn-pad">My Lists</a></span>
+        <span class="nav-button" ng-show="hasSession"><a href='#/alllists' class="btn btn-primary btn-lg active btn-block btn-pad">All Lists</a></span>
+        <span class="nav-button" ng-show="hasSession"><a href='#/myjobs' class="btn btn-primary btn-lg active btn-block btn-pad">My Jobs</a></span>
+      </div>
+      <div class="nav-buttons-user">
+        <span ng-show="hasSession"><a ng-click="signout()" href='#/logout' class="btn btn-primary btn-lg active btn-block btn-pad">Log Out</a></span>
+        <span ng-show="hasSession"><a ng-click="admin()" href='#/admin' class="btn btn-primary btn-lg active btn-block btn-pad">Admin</a></span>
+        <span ng-show="hasSession"><a href='#/validation' class="btn btn-primary btn-lg active btn-block btn-pad">Validate</a></span>
+      </div>
+    </div>
+
+<!--     <div>
       <div class="top-nav-left hide" ng-class="{
         'show': hasSession
       }">
@@ -58,7 +72,7 @@
         <span><a ng-click="admin()" href='#/admin' class="btn pull-right btn-primary btn-lg active btn-block btn-pad">Admin</a></span>
         <span><a href='#/validation' class="btn pull-right btn-primary btn-lg active btn-block btn-pad">Validate</a></span>
       </div>
-    <div>
+    </div> -->
   </div>
 
   <!-- <div class="jumbotron" ng-if="!hasSession">
