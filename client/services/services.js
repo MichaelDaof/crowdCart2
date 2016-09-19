@@ -7,7 +7,6 @@ angular.module("crowdcart.services",[])
 .factory("Admin", function($http, $q) {
   var def = $q.defer();
   var getAllUsers = function() {
-
       return $http({
         method: "GET",
         url: "/api/users"
@@ -25,7 +24,6 @@ angular.module("crowdcart.services",[])
       .then(function(res){
         return res.data;
     });
-
   }
 
   return {
@@ -34,6 +32,8 @@ angular.module("crowdcart.services",[])
   }
 
 })
+
+
 
 .factory("Validation", function($http) {
 
