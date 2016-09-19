@@ -28,7 +28,10 @@
     <h2>Dashboard</h2>
     <h3>{{"Total users: "+ dashboardData.totalNumberOfUsers}}</h3>
     <h3>{{"Total lists: "+ dashboardData.totalNumberOfLists}}</h3>
-    <h3>{{"Total warnings: "+ dashboardData.numberOfWarnings}}</h3>
+    <h3 ng-click="showWarnings()">{{"Total warnings: "+ dashboardData.numberOfWarnings}} (click to show usernames)</h3>
+    <div ng-repeat = "user in dashboardData.displayedWarningUsers">
+      <p>{{user}}</p>
+    </div>
   </div>
 
 </div>

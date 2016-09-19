@@ -7,6 +7,7 @@ angular.module("crowdcart.admin", ["crowdcart.services"])
     $scope.showAllUsers = false;
     $scope.showAllLists = false;
     $scope.showDashboard = false;
+    $scope.dashboardData.warningUsers = [];
 
     $scope.getAllUsers = function(){
       $scope.showDashboard = false;
@@ -40,6 +41,7 @@ angular.module("crowdcart.admin", ["crowdcart.services"])
         for (var i = 0; i < res.length; i++){
           if (res[i].warning = true){
             $scope.dashboardData.numberOfWarnings++;
+            $scope.dashboardData.warningUsers.push(res[i])
           }
         }
       })
@@ -48,6 +50,15 @@ angular.module("crowdcart.admin", ["crowdcart.services"])
         $scope.dashboardData.totalNumberOfLists = res.length;
       })
     }
+
+    $scope.showWarnings = function(){
+      console.log($scope.dashboardData.warningUsers);
+      $scope.dashboardData.displayedWarningUsers = []
+      for (var i = 0; i < $scope.dashboardData.warningUsers.length; i++){
+        $scope.dashboardData.displayedWarningUsers.push($scope.dashboardData.warningUsers[i].username)
+      }
+    }
+
 
   });
 
