@@ -108,7 +108,6 @@ body .bg {
 
 /*CUSTOM DEFAULT BOOSTRAP CSS*/
 
-
 .fadeaway {
   animation: slidein .3s ease-out;
   animation-fill-mode: forwards;
