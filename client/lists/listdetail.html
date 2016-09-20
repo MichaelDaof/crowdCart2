@@ -40,7 +40,7 @@
             </tr>
           </tbody>
         </table>
-          <form name="addItemForm" ng-if="displayList.status === 'draft'">
+          <form name="addItemForm" ng-if="displayList.collab_email">
             <input type="text" ng-model="item.item_name" placeholder="Item Name">
             <input type="number" ng-model="item.quantity" placeholder="Quantity">
             <input type="number" ng-model="item.unite_price" placeholder="Cost per Item">
